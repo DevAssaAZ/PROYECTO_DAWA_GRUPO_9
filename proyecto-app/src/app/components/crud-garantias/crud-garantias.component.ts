@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './crud-garantias.component.css'
 })
 export class CrudGarantiasComponent {
-
+  title="Crud de Garantias";
 }
