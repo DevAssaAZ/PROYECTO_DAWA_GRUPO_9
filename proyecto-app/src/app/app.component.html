@@ -1,18 +1,22 @@
-<div class="encabezado"><h1>{{title}} </h1>
+<div class="encabezado">
+  <h1>{{title}}</h1>
   <nav>
-      <ul class="menu-horizontal">
-          <li><a routerLink="/#" routerLinkActive="active">Productos</a></li>
-          <li><a routerLink="/#" routerLinkActive="active">Clientes</a></li>
-          <li><a routerLink="/#" routerLinkActive="active">Solicitudes de Soporte</a></li>
+    <ul class="menu-horizontal">
+      <li><a routerLink="/productos" routerLinkActive="active">Productos</a></li>
+      <li><a routerLink="/clientes" routerLinkActive="active">Clientes</a></li>
+      <li><a routerLink="/soporte" routerLinkActive="active">Solicitudes de Soporte</a></li>
+      <li>
+        <a routerLink="/garantias" routerLinkActive="active">Garantías</a>
+        <!-- Submenú vertical -->
+        <ul class="menu-vertical">
           <li>
-            <a routerLink="/#" routerLinkActive="active">Garantias</a>
-            <ul class="menu-vertical">
-              <li><a routerLink="/crud-garantias" routerLinkActive="active">CRUD Garantias</a></li>
-            </ul>
+            <a routerLink="/crud-garantias" routerLinkActive="active" >CRUD Garantías</a>
           </li>
-          <li><a routerLink="/#" routerLinkActive="active">Devoluciones</a></li>
-      </ul>
+        </ul>
+      </li>
+      <li><a routerLink="/devoluciones" routerLinkActive="active">Devoluciones</a></li>
+    </ul>
   </nav>
-  </div>
+</div>
 
-<router-outlet />
+<router-outlet></router-outlet>
