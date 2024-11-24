@@ -1,1 +1,42 @@
-<p>crud-devoluciones works!</p>
+<h3>Gestión de Devoluciones</h3>
+
+<!-- Formulario para agregar devoluciones -->
+<form [formGroup]="form" class="ocultar" (submit)="onSubmit()">
+    <mat-form-field class="formElement">
+        <mat-label>Cliente: </mat-label>
+        <input matInput type="text" placeholder="Cliente" formControlName="cliente"/>
+    </mat-form-field>
+    <mat-form-field class="formElement">
+        <mat-label>Descripcion: </mat-label>
+        <textarea matInput></textarea>
+    </mat-form-field>
+  <button type="submit">Agregar</button>
+</form>
+
+<!-- Tabla para mostrar devoluciones -->
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Cliente</th>
+      <th>Producto</th>
+      <th>Descripción</th>
+      <th>Fecha</th>
+      <th>Estado</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let devolucion of devoluciones">
+      <td>{{ devolucion.id }}</td>
+      <td>{{ devolucion.cliente }}</td>
+      <td>{{ devolucion.producto }}</td>
+      <td>{{ devolucion.descripcion }}</td>
+      <td>{{ devolucion.fechaSolicitud | date  }}</td>
+      <td>{{ devolucion.estado }}</td>
+      <td>
+        <button (click)="eliminarDevolucion(devolucion.id!)">Eliminar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
