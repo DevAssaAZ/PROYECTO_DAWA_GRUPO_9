@@ -1,12 +1,17 @@
 <div class="encabezado"><h1>{{title}} </h1>
   <nav>
-      <div class="links">
-          <a routerLink="#" routerLinkActive="active">Productos</a>
-          <a routerLink="#" routerLinkActive="active">Clientes</a>
-          <a routerLink="#" routerLinkActive="active">Solicitudes de Soporte</a>
-          <a routerLink="#" routerLinkActive="active">Garantias</a>
-          <a routerLink="#" routerLinkActive="active">Devoluciones</a>
-      </div>
+      <ul class="menu-horizontal">
+          <li><a routerLink="/#" routerLinkActive="active">Productos</a></li>
+          <li><a routerLink="/#" routerLinkActive="active">Clientes</a></li>
+          <li><a routerLink="/#" routerLinkActive="active">Solicitudes de Soporte</a></li>
+          <li>
+            <a routerLink="/#" routerLinkActive="active">Garantias</a>
+            <ul class="menu-vertical">
+              <li><a routerLink="/#" routerLinkActive="active">CRUD Garantias</a></li>
+            </ul>
+          </li>
+          <li><a routerLink="/#" routerLinkActive="active">Devoluciones</a></li>
+      </ul>
   </nav>
   </div>
 

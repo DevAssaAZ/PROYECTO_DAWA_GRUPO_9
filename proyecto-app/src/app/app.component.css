@@ -1,8 +1,50 @@
 .encabezado{
-    background-color: rgb(176,176,222);
+    background-color: #030D22;
     padding: 10px;
 }
 
 .encabezado h1{
     text-align:center;
+    color: white;
+}
+
+nav{
+    max-width: 900px;
+    margin: auto;
+    background-color: #333;
+    font-size: 20px;
+    margin-top: 50px;
+}
+.menu-horizontal{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+.menu-horizontal >li >a{
+    display: block;
+    padding: 15px 20px;
+    color:white;
+    text-decoration: none;
+}
+.menu-horizontal > li:hover{
+    background-color: red;
+}
+.menu-vertical{
+    position:absolute;
+    display: none;
+    list-style: none;
+    width: 200px;
+    background-color: rgb(0,0,0,.5);
+}
+.menu-horizontal li:hover .menu-vertical{
+    display: block;
+}
+.menu-vertical li:hover{
+    background-color: black;
+}
+.menu-vertical li a{
+    display: block;
+    color: white;
+    padding: 15px 15px 15px 20px;
+    text-decoration: none;
 }
