@@ -1,0 +1,8 @@
+.encabezado{
+    background-color: rgb(176,176,222);
+    padding: 10px;
+}
+
+.encabezado h1{
+    text-align:center;
+}
