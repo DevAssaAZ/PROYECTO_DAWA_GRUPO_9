@@ -1,15 +1,15 @@
 {
-    "garantias": [
-      {
-        "id": "1",
-        "cliente_id": "2",
-        "producto": "Producto 1",
-        "numeroFactura": "5000505050",
-        "fechaCompra": "2024-11-20",
-        "descripcion": "Falla interna del producto",
-        "estado": "Pendiente",
-        "fechaRegistro": "2024-11-24",
-        "ultimaActualizacion": "2024-11-24"
-      }
-    ]
-  }
+  "garantias": [
+    {
+      "cliente_id": "2",
+      "producto": "Producto 1",
+      "numeroFactura": "5000505050",
+      "fechaCompra": "2024-11-20",
+      "descripcion": "Falla interna del producto",
+      "estado": "Pendiente",
+      "fechaRegistro": "2024-11-24",
+      "ultimaActualizacion": "2024-11-24",
+      "id": "1"
+    }
+  ]
+}
