@@ -19,7 +19,7 @@ import { DialogComponent } from '../../shared/dialog/dialog.component';
 @Component({
   selector: 'app-crud-garantias',
   standalone: true,
-  imports: [MatFormField, MatLabel, MatButtonModule, MatInputModule, MatTableModule, MatPaginatorModule, DatePipe,
+  imports: [ MatButtonModule, MatInputModule, MatTableModule, MatPaginatorModule, DatePipe,
     MatRadioModule, MatSelectModule, MatCheckboxModule, MatDatepickerModule, MatOptionModule, MatFormFieldModule,
     MatNativeDateModule, ReactiveFormsModule],
   templateUrl: './crud-garantias.component.html',
@@ -44,9 +44,9 @@ export class CrudGarantiasComponent implements OnInit, AfterViewInit{
   this.form= this.fb.group({
     cliente_id:["", [Validators.required]],
     producto: ["", [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
-    numeroFactura:["",[Validators.required]],
+    numeroFactura:["",[Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
     fechaCompra: ["",[Validators.required]],
-    descripcion: ["",[Validators.required]],
+    descripcion: ["",[Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
     estado: "Pendiente",
     fechaRegistro: ["",[Validators.required]],
     ultimaActualizacion: [""],
