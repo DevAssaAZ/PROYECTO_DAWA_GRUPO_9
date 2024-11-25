@@ -19,7 +19,7 @@ import { DialogComponent } from '../../shared/dialog/dialog.component';
 @Component({
   selector: 'app-crud-garantias',
   standalone: true,
-  imports: [ MatButtonModule, MatInputModule, MatTableModule, MatPaginatorModule, DatePipe,
+  imports: [MatFormField, MatLabel, MatButtonModule, MatInputModule, MatTableModule, MatPaginatorModule, DatePipe,
     MatRadioModule, MatSelectModule, MatCheckboxModule, MatDatepickerModule, MatOptionModule, MatFormFieldModule,
     MatNativeDateModule, ReactiveFormsModule],
   templateUrl: './crud-garantias.component.html',
