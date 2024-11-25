@@ -46,9 +46,9 @@
 
     <mat-form-field class="formElement">
         <mat-label>Fecha de Compra: </mat-label>
-        <input matInput [matDatepicker]="picker" type="text" placeholder="Fecha de Compra" formControlName="fechaCompra"/>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput [matDatepicker]="picker1" type="text" placeholder="Fecha de Compra" formControlName="fechaCompra"/>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="formElement">
@@ -84,17 +84,22 @@
 
     <mat-form-field class="formElement">
         <mat-label>Fecha de Registro: </mat-label>
-        <input matInput [matDatepicker]="picker" type="text" placeholder="Fecha de registro" formControlName="fechaRegistro"/>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput [matDatepicker]="picker2" type="text" placeholder="Fecha de registro" formControlName="fechaRegistro"/>
+        <mat-datepicker-toggle matIconSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="formElement">
         <mat-label>Actualizacion: </mat-label>
-        <input matInput [matDatepicker]="picker" type="text" placeholder="Fecha de actualizacion" formControlName="ultimaActualizacion"/>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput [matDatepicker]="picker3" type="text" placeholder="Fecha de actualizacion" formControlName="ultimaActualizacion"/>
+        <mat-datepicker-toggle matIconSuffix [for]="picker3"></mat-datepicker-toggle>
+        <mat-datepicker #picker3></mat-datepicker>
     </mat-form-field>
+
+    <div class="actions">
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+            <button mat-raised-button color="primary"  type="reset">Cancelar</button>
+    </div>
 
 </form>
 
