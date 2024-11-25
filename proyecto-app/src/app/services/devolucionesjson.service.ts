@@ -16,11 +16,11 @@ export class DevolucionesjsonService {
     return this.http.get<Devolucion[]>(this.jsonUrl);
   }
 
-  createDevolucion(devolucion: Devolucion): Observable<Devolucion> {
+  addDevolucion(devolucion: Devolucion): Observable<Devolucion> {
     return this.http.post<Devolucion>(this.jsonUrl, devolucion);
   }
 
-  updateDevolucion(id: number, devolucion: Devolucion): Observable<Devolucion> {
+  updateDevolucion(devolucion: Devolucion): Observable<Devolucion> {
     const urlDeLaDevolucion = `${this.jsonUrl}/${devolucion.id}`;
     return this.http.put<Devolucion>(urlDeLaDevolucion, devolucion);
   }
