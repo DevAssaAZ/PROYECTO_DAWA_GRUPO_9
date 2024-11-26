@@ -7,7 +7,7 @@ import { Soporte } from '../models/SolicitudesSoporte';
   providedIn: 'root'
 })
 export class SoportejsonService {
-  private jsonUrl = 'http://localhost:3000/soporte'; // Ruta del JSON
+  private jsonUrl = 'http://localhost:4200/soporte'; // Ruta del JSON
 
   constructor(private http: HttpClient) { }
 
