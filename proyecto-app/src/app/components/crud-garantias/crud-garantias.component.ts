@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Garantia } from '../../models/Garantia';
 import { GarantiasjsonService } from '../../services/garantiasjson.service';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
+import { NotificationComponent } from '../../shared/notification/notification.component';
 
 @Component({
   selector: 'app-crud-garantias',
@@ -55,7 +56,7 @@ export class CrudGarantiasComponent implements OnInit, AfterViewInit{
   }
 
   
-  constructor(private garantiaService:GarantiasjsonService, private fb: FormBuilder, private mydialog: MatDialog){
+  constructor(private garantiaService:GarantiasjsonService, private fb: FormBuilder, private mydialog: MatDialog, private noti: MatDialog){
   }
 
   getGarantias(): void{
@@ -86,7 +87,15 @@ export class CrudGarantiasComponent implements OnInit, AfterViewInit{
     dialogRef.afterClosed().subscribe(result=>{
       if(result==="Aceptar"){
         this.garantiaService.deleteGarantia(garantia).subscribe(()=>{
-          alert("Eliminado exitosamente");
+          // alert("Eliminado exitosamente");
+          const notiRef = this.noti.open(NotificationComponent,{
+            data:{
+              titulo:"CONFIRMACION",
+              contenido: "Se elimino Satisfactoriamente"
+            }
+          });
+          notiRef.afterClosed().subscribe(result=>{
+          });
           this.getGarantias(); //actualizar el dataSource
         });
       }else if(result==="Cancelar"){
@@ -146,7 +155,15 @@ export class CrudGarantiasComponent implements OnInit, AfterViewInit{
       dialogRef.afterClosed().subscribe(result=>{
         if(result==="Aceptar"){
           this.garantiaService.updateGarantia(newGarantia).subscribe((updateGarantia)=>{
-            alert("Garantia editada exitosamente");
+            // alert("Garantia editada exitosamente");
+            const notiRef = this.noti.open(NotificationComponent,{
+              data:{
+                titulo:"CONFIRMACION",
+                contenido: "Se edito Exitosamente"
+              }
+            });
+            notiRef.afterClosed().subscribe(result=>{
+            });
             this.clearForm();
             this.getGarantias(); // actualizar el datasource de la table de garantias
           });
@@ -166,7 +183,15 @@ export class CrudGarantiasComponent implements OnInit, AfterViewInit{
       dialogRef.afterClosed().subscribe(result=>{
         if(result==="Aceptar"){
           this.garantiaService.addGarantia(newGarantia).subscribe((addGarantia)=>{
-            alert("Garantia agregada exitosamente");
+            // alert("Garantia agregada exitosamente");
+            const notiRef = this.noti.open(NotificationComponent,{
+              data:{
+                titulo:"CONFIRMACION",
+                contenido: "Se agrego Exitosamente"
+              }
+            });
+            notiRef.afterClosed().subscribe(result=>{
+            });
             this.clearForm();
             this.getGarantias(); // actualizar el datasource de la table de garantias
           });
