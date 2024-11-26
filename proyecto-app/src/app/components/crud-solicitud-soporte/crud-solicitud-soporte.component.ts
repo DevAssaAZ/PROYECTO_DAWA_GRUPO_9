@@ -1,17 +1,22 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { SoportejsonService } from '../../services/soportejson.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Soporte } from '../../models/SolicitudesSoporte';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { NotificationComponent } from '../../shared/notification/notification.component';
+import { DatePipe } from '@angular/common';
+import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatOption } from '@angular/material/core';
+import { MatSelect } from '@angular/material/select';
+import { MatDatepicker, MatDatepickerToggle } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-crud-solicitud-soporte',
   standalone: true,
-  imports: [],
+  imports: [MatPaginator,MatTable,DatePipe,MatLabel,MatFormField,MatOption,MatSelect,MatError,MatDatepicker,MatDatepickerToggle],
   templateUrl: './crud-solicitud-soporte.component.html',
   styleUrl: './crud-solicitud-soporte.component.css'
 })
