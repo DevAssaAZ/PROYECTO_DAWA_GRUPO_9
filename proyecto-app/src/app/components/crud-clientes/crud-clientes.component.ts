@@ -54,5 +54,4 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
   onSubmit(){
 
   }
-
 }

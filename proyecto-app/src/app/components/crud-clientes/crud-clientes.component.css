@@ -6,3 +6,30 @@
     margin:10px;
 }
 
+form{
+    padding-top: 40px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 8px;
+    margin-right: 8px;
+    border:1px solid #aaa;
+    border-radius: 5px;
+    align-items: center;
+    text-align: center;
+}
+
+.actions{
+    padding: 30px;
+    margin: 15px;
+}
+.separar{
+    display:inline-block;
+    padding: 15px;
+}
+.separart{
+    display:inline-block;
+    padding: 3px;
+}
+.titulo{
+    margin-left: 8px;
+}
