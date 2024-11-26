@@ -45,7 +45,7 @@
   ],
   "devoluciones": [
     {
-      "id": 1,
+      "id": "1",
       "cliente": "Juan Pérez",
       "producto": "Laptop",
       "descripcion": "La laptop tiene un defecto en la pantalla.",
@@ -53,7 +53,7 @@
       "estado": "Pendiente"
     },
     {
-      "id": 2,
+      "id": "2",
       "cliente": "María García",
       "producto": "Teléfono",
       "descripcion": "El teléfono no enciende.",

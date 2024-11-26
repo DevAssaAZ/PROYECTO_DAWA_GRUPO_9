@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
+import { NotificationComponent } from "../notification/notification.component";
 
 
 export interface DialogData{
@@ -10,7 +11,7 @@ export interface DialogData{
 @Component({
   selector: 'app-dialog',
   standalone: true,
-  imports: [MatDialogModule],
+  imports: [MatDialogModule, NotificationComponent],
   templateUrl: './dialog.component.html',
   styleUrl: './dialog.component.css'
 })
