@@ -1,7 +1,6 @@
 {
   "garantias": [
     {
-      "id": "3e48",
       "cliente_id": 3,
       "producto": "Laptop",
       "numeroFactura": "30303030",
@@ -9,7 +8,8 @@
       "descripcion": "fallo interno",
       "estado": "Pendiente",
       "fechaRegistro": "2024-11-25T05:00:00.000Z",
-      "ultimaActualizacion": ""
+      "ultimaActualizacion": "2024-11-25T05:00:00.000Z",
+      "id": "3e48"
     }
   ],
   "clientes": [
