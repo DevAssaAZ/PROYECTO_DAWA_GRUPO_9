@@ -42,5 +42,22 @@
       "fecha_solicitud":"2024-11-24",
       "estado": "Pendiente"
     }
+  ],"devoluciones":[
+    {
+      "id": 1,
+      "cliente": "Juan Pérez",
+      "producto": "Laptop",
+      "descripcion": "La laptop tiene un defecto en la pantalla.",
+      "fechaSolicitud": "2024-11-10",
+      "estado": "Pendiente"
+    },
+    {
+      "id": 2,
+      "cliente": "María García",
+      "producto": "Teléfono",
+      "descripcion": "El teléfono no enciende.",
+      "fechaSolicitud": "2024-11-12",
+      "estado": "En proceso"
+    }
   ]
 }

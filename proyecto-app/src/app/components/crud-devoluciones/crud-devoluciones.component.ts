@@ -1,35 +1,47 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DevolucionesjsonService } from '../../services/devolucionesjson.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { Devolucion } from '../../models/Devolucion';
-import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MyDialogComponent } from '../utiles/my-dialog/my-dialog.component';
+
+
+
 
 @Component({
   selector: 'app-crud-devoluciones',
   standalone: true,
-  imports: [MatButtonModule,MatInputModule,MatPaginatorModule,DatePipe,MatTableModule,MatRadioModule,MatSelectModule,MatCheckboxModule,MatDatepickerModule,MatOptionModule, MatFormFieldModule,MatNativeDateModule,ReactiveFormsModule,],
+  imports: [ReactiveFormsModule,CommonModule,MatFormField,MatButtonModule,MatInputModule,MatPaginatorModule,DatePipe,MatTableModule,MatRadioModule,MatSelectModule,MatCheckboxModule,MatDatepickerModule,MatOptionModule, MatFormFieldModule,MatNativeDateModule,ReactiveFormsModule,],
   templateUrl: './crud-devoluciones.component.html',
   styleUrl: './crud-devoluciones.component.css'
 })
-export class CrudDevolucionesComponent implements OnInit{
+export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
+  title= "Crud devoluciones a hacer";
   form!: FormGroup;
-  isEditMode = false;
+  isEditMode:boolean = false;
   currentId!: number;
 
   //dataSource (fuente de datos) para mi tabla
   dataSource = new MatTableDataSource<Devolucion>();
   @ViewChild(MatPaginator) paginator!:MatPaginator;
+
+  fechaMinima: Date = new Date(1940, 0,1);
+  fechaMaxima: Date = new Date();//fecha actual
+
+
+  displayedColumns: string[] = ['id', 'cliente', 'producto', 'descripcion', 'fechaSolicitud', 'estado', 'acciones'];
+
    
   ngAfterViewInit(): void{
     this.dataSource.paginator = this.paginator;
@@ -38,18 +50,19 @@ export class CrudDevolucionesComponent implements OnInit{
   ngOnInit(): void {
     this.getDevoluciones();
     //inicializar las variables asociadas a los componentes del formulario
-    this.form= this.fb.group({
-      id:[""],
-      cliente:[""],
-      producto:[""],
-      descripcion:[""],
-      fechaSolicitud:[""],
-      estado:[""],
-    });  
+    this.form = this.fb.group({
+      id: [''],
+      cliente: ['', [Validators.required, Validators.minLength(3)]],
+      producto: ['', [Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9]+$/)]],
+      descripcion: ['', Validators.required],
+      estado: [],
+      fechaSolicitud: ['', Validators.required]
+    });
   }
   
   constructor( private devolucionesService:DevolucionesjsonService, private fb: FormBuilder,
-    private mydialog: MatDialog
+    private mydialog: MatDialog,  
+
   ){}
     
   getDevoluciones() {
@@ -86,16 +99,16 @@ export class CrudDevolucionesComponent implements OnInit{
       return;
     }
     //obtener los datos de los controles del formulario
-    const newPelicula:Devolucion = this.form.value;
+    const newDevolucion:Devolucion = this.form.value;
 
     if(this.isEditMode){
-      newPelicula.id = this.currentId;
-      this.devolucionesService.updateDevolucion(newPelicula).subscribe((updatePelicula)=>{
+      newDevolucion.id = this.currentId;
+      this.devolucionesService.updateDevolucion(newDevolucion).subscribe((updateDevolucion)=>{
         alert("Pelicula fue editada exitosamente");
         this.getDevoluciones();
       });
     } else{
-      this.devolucionesService.addDevolucion(newPelicula).subscribe((addPelicula)=>{
+      this.devolucionesService.addDevolucion(newDevolucion).subscribe((addDevolucion)=>{
         alert("Pelicula fue agregada exitosamente");
         this.getDevoluciones();
       });
@@ -118,5 +131,37 @@ export class CrudDevolucionesComponent implements OnInit{
     this.isEditMode=false;
   }
 
-  
+  search(searchInput: HTMLInputElement){
+    if(searchInput.value){ // searchInput.value es lo que el usuario escribio en la caja de texto
+      //buscar
+      this.devolucionesService.getDevolucionSearch(searchInput.value).subscribe((datos:Devolucion[])=>{
+        this.dataSource.data = datos;
+      });
+    }else{ //listar todas las peliculas
+      this.getDevoluciones();
+    }
+  }
+
+  deleteDevolucion(devolucion:Devolucion){
+
+    const dialogRef=this.mydialog.open(MyDialogComponent, {
+      data:{
+        titulo: "Eliminacion de la devolucion",
+        contenido: "Estas seguro de eliminar la devolucion del producto " +devolucion.producto + " ?"
+      },
+    }); //abrir la ventana de dialogo
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result==="aceptar"){ // que quiero que suceda si dio click en aceptar
+        this.devolucionesService.deleteMovie(devolucion).subscribe(()=>{
+          alert("Eliminado exitosamente");
+          this.getDevoluciones(); //para que se actualice el dataSource
+        });      
+      }else if(result==="cancelar"){  // que quiero que suceda si dio click en cancelar
+        console.error("Cancelar");
+      }
+    });
+
+  }
+
+
 }
