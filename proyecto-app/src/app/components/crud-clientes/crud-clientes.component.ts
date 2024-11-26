@@ -4,11 +4,12 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Clientes } from '../../models/Clientes';
 import { MatPaginator } from '@angular/material/paginator';
 import { ClientesjsonService } from '../../services/clientesjson.service';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-crud-clientes',
   standalone: true,
-  imports: [],
+  imports: [MatFormField, MatLabel],
   templateUrl: './crud-clientes.component.html',
   styleUrl: './crud-clientes.component.css'
 })
@@ -30,5 +31,15 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
     this.clienteService.getClientes().subscribe((datos:Clientes[])=>{
       this.dataSource.data = datos;
     });
+  }
+  search(searchInput: HTMLInputElement){
+    if(searchInput.value){
+      const id = Number(searchInput.value);
+      this.clienteService.getClientesSearch(id).subscribe((datos:Clientes[])=>{
+        this.dataSource.data = datos;
+      });
+    }else{
+      this.getClientes();
+    }
   }
 }
