@@ -1,7 +1,7 @@
 export interface Garantia{
     
     //propiedades
-    id?:number; // El id es opcional por que al crear una nueva pelicula no lo tenemos aun
+    id?:number; 
     cliente_id: number;
     producto:string;
     numeroFactura:string;

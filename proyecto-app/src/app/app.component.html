@@ -3,12 +3,17 @@
   <nav>
     <ul class="menu-horizontal">
       <li><a routerLink="/inicio" routerLinkActive="active">Inicio</a></li>
-      <li><a routerLink="/productos" routerLinkActive="active">Productos</a></li>
+      <li><a routerLink="/productos" routerLinkActive="active">Productos</a>
+        <ul class="menu-vertical">
+          <li>
+            <a routerLink="" routerLinkActive="active">Crud de Productos</a>
+          </li>
+        </ul>
+      </li>
       <li><a routerLink="/crud-clientes"  routerLinkActive="active">Clientes</a></li>
       <li><a routerLink="/crud-solicitud" routerLinkActive="active">Solicitudes de Soporte</a></li>
       <li>
         <a routerLink="/crud-garantias"  routerLinkActive="active">Garantías</a>
-        <!-- Submenú vertical -->
         <!-- <ul class="menu-vertical">
           <li>
             <a routerLink="/crud-garantias" routerLinkActive="active" >CRUD Garantías</a>
