@@ -31,5 +31,16 @@
       "fechaRegistro": "2024-11-22",
       "estado": "Inactivo"
     }
+  ],
+  "soporte": [
+    {
+      "id": "1",
+      "cliente_id": "2",
+      "titulo": "Solicitud",
+      "descripcion": "Descripcion",
+      "producto": "Producto 1",
+      "fecha_solicitud":"2024-11-24",
+      "estado": "Pendiente"
+    }
   ]
 }
