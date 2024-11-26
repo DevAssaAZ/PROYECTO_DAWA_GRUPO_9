@@ -118,59 +118,70 @@ export class CrudSolicitudSoporteComponent {
   }
 
   // Guardar o actualizar soporte
-  onSubmit(): void {
+  onSubmit() {
     if (this.form.invalid) {
       return;
     }
 
     const newSoporte: Soporte = this.form.value;
 
-    if (this.isEditMode) {
+    if(this.isEditMode){//editar
+
       newSoporte.id = this.currentId;
 
-      const dialogRef = this.mydialog.open(DialogComponent, {
-        data: {
-          titulo: "Editar Soporte",
-          contenido: "¿Desea guardar los cambios realizados en este soporte?"
+      const dialogRef = this.mydialog.open(DialogComponent,{
+        data:{
+          titulo:"Editar ",
+          contenido: 'Desea guardar la modificacion de esta solicitud de soporte?'
         }
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        if (result === "Aceptar") {
-          this.soporteService.updateSoporte(newSoporte).subscribe(() => {
-            const notiRef = this.noti.open(NotificationComponent, {
-              data: {
-                titulo: "Confirmación",
-                contenido: "Soporte actualizado exitosamente."
+      }); //Abrir la ventana
+      dialogRef.afterClosed().subscribe(result=>{
+        if(result==="Aceptar"){
+          this.soporteService.updateSoporte(newSoporte).subscribe((updateSoporte)=>{
+            // alert("Solicitud de soporte editada exitosamente");
+            const notiRef = this.noti.open(NotificationComponent,{
+              data:{
+                titulo:"CONFIRMACION",
+                contenido: "Se edito Exitosamente"
               }
             });
-            this.clearForm();
-            this.getSoportes();
-          });
-        }
-      });
-    } else {
-      const dialogRef = this.mydialog.open(DialogComponent, {
-        data: {
-          titulo: "Agregar Soporte",
-          contenido: "¿Desea guardar este nuevo soporte?"
-        }
-      });
-
-      dialogRef.afterClosed().subscribe(result => {
-        if (result === "Aceptar") {
-          this.soporteService.addSoporte(newSoporte).subscribe(() => {
-            const notiRef = this.noti.open(NotificationComponent, {
-              data: {
-                titulo: "Confirmación",
-                contenido: "Soporte agregado exitosamente."
-              }
+            notiRef.afterClosed().subscribe(result=>{
             });
             this.clearForm();
-            this.getSoportes();
+            this.getSoportes(); // actualizar el datasource de la table de soporte
           });
+        }else if(result==="Cancelar"){
+          this.getSoportes();
         }
-      });
+      })
+      
+    }else{//agregar
+
+      const dialogRef = this.mydialog.open(DialogComponent,{
+        data:{
+          titulo:"Agregar Nueva Solicitud de Soporte" ,
+          contenido: 'Desea guardar esta nueva solicitud de soporte?'
+        }
+      }); //Abrir la ventana
+      dialogRef.afterClosed().subscribe(result=>{
+        if(result==="Aceptar"){
+          this.soporteService.addSoporte(newSoporte).subscribe((addSoporte)=>{
+            // alert("Solicitud de soporte agregada exitosamente");
+            const notiRef = this.noti.open(NotificationComponent,{
+              data:{
+                titulo:"CONFIRMACION",
+                contenido: "Se agrego Exitosamente"
+              }
+            });
+            notiRef.afterClosed().subscribe(result=>{
+            });
+            this.clearForm();
+            this.getSoportes(); // actualizar el datasource de la table de soporte
+          });
+        }else if(result==="Cancelar"){
+          this.getSoportes();
+        }
+      })
     }
   }
 
