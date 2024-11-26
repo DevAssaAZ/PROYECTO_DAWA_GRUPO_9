@@ -41,7 +41,7 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
       direccion:[""],
       fechaRegistro:[""],
       estado:[""]
-    })
+    });
   }
   ngAfterViewInit(): void {
     this.dataSource.paginator= this.paginator;
@@ -63,9 +63,7 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
       this.getClientes();
     }
   }
-  onSubmit(){
-
-  }
+  
   eliminar(cliente:Clientes){
     const dialogRef = this.mydialog.open(DialogComponent,{
       data:{
@@ -91,8 +89,97 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
   }else if(result==="Cancelar"){
     this.getClientes();
     }
-    });
+    })
   }
   editar(cliente:Clientes){
+    this.isEditMode = true;
+
+    if(cliente && cliente.id){
+      this.currentId = cliente.id;
+    }else{
+      console.log("El id del cliente esta indefinido");
+    }
+
+    this.form.setValue({
+      id: cliente.id,
+      nombre: cliente.nombre,
+      email:cliente.email,
+      telefono: cliente.telefono,
+      direccion: cliente.direccion,
+      fechaRegistro: cliente.fechaRegistro,
+      estado: cliente.estado,
+    });
+  }
+  onSubmit(){
+    if(this.form.invalid){
+      return;
+    }
+    const newCliente: Clientes= this.form.value;
+    if(this.isEditMode){
+      newCliente.id = this.currentId;
+
+      const dialogRef = this.mydialog.open(DialogComponent,{
+        data:{
+          titulo:"Editar ",
+          contenido: ' Desea modificar este cliente ' + " ?"
+        }
+      });
+      dialogRef.afterClosed().subscribe(result=>{
+        if(result==="Aceptar"){
+          this.clienteService.updateCliente(newCliente).subscribe((updateCliente)=>{
+            const notiRef = this.noti.open(NotificationComponent,{
+              data:{
+                titulo:"CONFIRMACION",
+                contenido: "Se edito Exitosamente"
+              }
+            });
+            notiRef.afterClosed().subscribe(result=>{
+            });
+            this.clearForm();
+            this.getClientes(); 
+          });
+        }else if(result==="Cancelar"){
+          this.getClientes();
+        }
+      })
+    }else{
+      const dialogRef = this.mydialog.open(DialogComponent,{
+        data:{
+          titulo:"Agregar Nuevo Cliente" ,
+          contenido: 'Desea guardar este nuevo cliente? ' + " ?"
+        }
+      });
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result==="Aceptar"){
+        this.clienteService.addCliente(newCliente).subscribe((addCliente)=>{
+          const notiRef = this.noti.open(NotificationComponent,{
+            data:{
+              titulo:"CONFIRMACION",
+              contenido: "Se agrego Exitosamente"
+            }
+          });
+          notiRef.afterClosed().subscribe(result=>{
+          });
+          this.clearForm();
+          this.getClientes(); 
+        });
+      }else if(result==="Cancelar"){
+        this.getClientes();
+      }
+    })
+   }
+  }
+  clearForm():void{
+    this.form.reset({
+      id: '',
+      nombre: '',
+      email: '',
+      telefono: '',
+      direccion: '',
+      fechaRegistro: '',
+      estado: '',
+    });
+    this.currentId = 0;
+    this.isEditMode = false;
   }
 }

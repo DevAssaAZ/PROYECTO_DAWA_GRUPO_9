@@ -69,14 +69,13 @@
     },
     {
       "id": "7",
-      "nombre": "José Sánchez",
-      "email": "jose.sanchez@yahoo.com",
-      "telefono": "0987654321",
-      "direccion": "Av. Amazonas, Guayaquil",
-      "fechaRegistro": "2024-11-18",
-      "estado": "Inactivo"
+      "nombre": "Britany",
+      "email": "britanyduque1@gmail.com",
+      "telefono": 943809145,
+      "direccion": "calle 25 y la h",
+      "fechaRegistro": "2024-11-26T05:00:00.000Z",
+      "estado": "activo"
     }
-    
   ],
   "soporte": [
     {
