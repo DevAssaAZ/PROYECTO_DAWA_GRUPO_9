@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule,  Validators } from '@angular/forms';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Clientes } from '../../models/Clientes';
 import { MatPaginator } from '@angular/material/paginator';
@@ -16,6 +16,8 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { NotificationComponent } from '../../shared/notification/notification.component';
+
+
 
 @Component({
   selector: 'app-crud-clientes',
@@ -34,13 +36,13 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.getClientes();
     this.form = this.fb.group({
-      id: [""],
-      nombre: [""],
-      email: [""],
-      telefono:[""],
-      direccion:[""],
-      fechaRegistro:[""],
-      estado:[""]
+      id: [" ",[Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
+      nombre: ["", [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
+      email: ["",[Validators.required]],
+      telefono:["", [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
+      direccion:["",[Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
+      fechaRegistro:["",[Validators.required]],
+      estado:["", [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9 ]+$/)]]
     });
   }
   ngAfterViewInit(): void {

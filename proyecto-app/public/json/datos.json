@@ -14,15 +14,6 @@
   ],
   "clientes": [
     {
-      "id": "1",
-      "nombre": "Carlos Jimenez",
-      "email": "carlos1@gmail.com",
-      "telefono": "0986547932",
-      "direccion": "Centro, 9 de octubre",
-      "fechaRegistro": "2024-11-25",
-      "estado": "Activo"
-    },
-    {
       "id": "2",
       "nombre": "Luisa Rodriguez",
       "email": "luisa13@gmail.com",
@@ -75,6 +66,24 @@
       "direccion": "calle 25 y la h",
       "fechaRegistro": "2024-11-26T05:00:00.000Z",
       "estado": "activo"
+    },
+    {
+      "id": 1,
+      "nombre": "Rafaela",
+      "email": "correo",
+      "telefono": 987654123,
+      "direccion": "calle g y j",
+      "fechaRegistro": "2024-11-26T05:00:00.000Z",
+      "estado": "activo"
+    },
+    {
+      "id": 1,
+      "nombre": "Alberto",
+      "email": "alberto@gmail.com",
+      "telefono": 365478914,
+      "direccion": "calle 39 y la k",
+      "fechaRegistro": "2024-11-21T05:00:00.000Z",
+      "estado": "inactivo"
     }
   ],
   "soporte": [

@@ -9,7 +9,7 @@
                 @if(form.get('id')?.errors?.['required']){
                     El id del cliente es requerido
                 }@else if(form.get('id')?.errors?.['minlength']){
-                    Id del cliente mínimo 1 caracter
+                    El Id es requerido
 
                 }@else if(form.get('id')?.errors?.['patterns']){
                     Solo numeros
@@ -53,11 +53,33 @@
     <mat-form-field class="formElement">
         <mat-label> Telefono: </mat-label>
         <input matInput type="number" placeholder="0" formControlName="telefono"/>
+        <mat-error>
+            @if(form.get('telefono')?.invalid && (form.get("telefono")?.dirty || form.get('telefono')?.touched)){
+                @if(form.get('telefono')?.errors?.['required']){
+                    Telefono es requerido
+                }@else if(form.get('telefono')?.errors?.['minlength']){
+                    Telefono minimo 3 caracteres
+                }@else if(form.get('telefono')?.errors?.['patterns']){
+                    Solo numeros
+                }
+            }
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field class="formElement">
         <mat-label> Direccion </mat-label>
         <input matInput type="text" placeholder="direccion" formControlName="direccion"/>
+        <mat-error>
+            @if(form.get('direccion')?.invalid && (form.get("direccion")?.dirty || form.get('direccion')?.touched)){
+                @if(form.get('direccion')?.errors?.['required']){
+                    Direccion es requerida
+                }@else if(form.get('direccion')?.errors?.['minlength']){
+                    Direccion minimo 3 caracteres
+                }@else if(form.get('direccion')?.errors?.['patterns']){
+                    Solo letras y numeros 
+                }
+            }
+        </mat-error>
     </mat-form-field>
 
     <mat-form-field class="formElement">
