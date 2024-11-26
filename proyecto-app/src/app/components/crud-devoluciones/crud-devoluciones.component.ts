@@ -14,7 +14,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
-import { MyDialogComponent } from '../utiles/my-dialog/my-dialog.component';
+import { DialogComponent } from '../../shared/dialog/dialog.component';
 
 
 
@@ -146,7 +146,7 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
 
   deleteDevolucion(devolucion:Devolucion){
 
-    const dialogRef=this.mydialog.open(MyDialogComponent, {
+    const dialogRef=this.mydialog.open(DialogComponent, {
       data:{
         titulo: "Eliminacion de la devolucion",
         contenido: "Estas seguro de eliminar la devolucion del producto " +devolucion.producto + " ?"
