@@ -1,0 +1,40 @@
+<br/><br/>
+
+@if(producto.length===0){
+<p>No hay productos para mostrar.</p>
+}@else {
+<div class="centrar">
+
+    @for(produc of producto; track $index){
+    <mat-card appearance="outlined" class="producto-card">
+        <mat-card-header>
+            <mat-card-title><strong>{{produc.nombre | uppercase}}</strong></mat-card-title>
+            <mat-card-subtitle>
+                <p>{{produc.categoria}}</p>
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        @if(produc.imagen){
+        <img mat-card-image [src]="produc.imagen" [alt]="produc.nombre" #imgProducto (mouseenter)="activar(imgProducto)"
+            (mouseleave)="desactivar(imgProducto)"> <!--directivas de atributos-->
+        }@else{
+        <img mat-card-image src="proyecto-app\public\images\default.png" [alt]="produc.nombre" />
+        }
+
+        <br/>
+
+        <mat-card-content>
+            <p><strong>Disponible: </strong>{{produc.isAvailable?'Si':'No'}}</p>
+            <p><strong>Precio: </strong>{{produc.precio | currency:"USD"}}</p>
+        </mat-card-content>
+        <mat-card-actions class="centrarBtn">
+            <button mat-flat-button class="btnCompra" (click)="comprar(produc)">
+                <mat-icon>favorite</mat-icon>
+                COMPRAR
+            </button>
+
+        </mat-card-actions>
+    </mat-card>
+    }
+</div>
+}

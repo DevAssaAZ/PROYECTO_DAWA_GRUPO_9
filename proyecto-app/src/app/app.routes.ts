@@ -5,6 +5,7 @@ import { IndexComponent } from './components/index/index.component';
 import { CrudClientesComponent } from './components/crud-clientes/crud-clientes.component';
 import { CrudSolicitudSoporteComponent } from './components/crud-solicitud-soporte/crud-solicitud-soporte.component';
 import { CrudProductosComponent } from './components/crud-productos/crud-productos.component';
+import { ListaProductosComponent } from './components/lista-productos/lista-productos.component';
 
 export const routes: Routes = [
 
@@ -13,6 +14,7 @@ export const routes: Routes = [
     {path: "crud-clientes", component:CrudClientesComponent},
     {path: "crud-solicitud", component:CrudSolicitudSoporteComponent},
     {path: "crud-producto", component:CrudProductosComponent},
+    {path:"producto", component:ListaProductosComponent},
     {path: "inicio", component:IndexComponent},
 
      //rutas por defecto

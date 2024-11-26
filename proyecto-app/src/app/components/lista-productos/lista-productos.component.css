@@ -1,0 +1,99 @@
+/* Propiedades fuera de clase */
+.centrar{
+    display: flex;
+    flex-flow: row wrap;
+    margin: auto;
+    justify-content: center;
+}
+.titulo{
+    background-color: crimson;
+    position: absolute;
+    top:-2px;
+    left:0;
+    text-align: center;
+    display: block;
+    width: 100%; /* Asegura que ocupe todo el ancho de la tarjeta */
+    height: 12%;
+    margin:0px;
+    padding:0px;
+    color: white;
+    /* text-align: center; */
+    border-radius: 6%;
+}
+
+.centrarBtn{
+    display: flex;
+    flex-flow: row wrap;
+    margin: auto;
+    justify-content: center;
+} 
+
+
+.btnCompra{
+    width:9em;
+    height:3em;
+    border-radius: 30em;
+    font-size: 15px;
+    font-family: inherit;
+    border: none;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    z-index:1;
+    box-shadow: 6px 6px 12px #c5c5c5,
+    -6px -6px 12px #ffffff;
+
+}
+.btnCompra::before{
+    content: '';
+    width: 0;
+    height: 3em;
+    border-radius: 30em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image: linear-gradient(to
+        right, #0fd850 0%, #f9f047 100%);
+    transition: .5s ease;
+    display: block;
+    z-index: -1;
+}
+.btnCompra:hover::before{
+    width: 9em;
+    
+}
+
+
+.activa{
+    border: 2px solid red;
+    box-shadow: 0px 4px 4px 6px #aaa;
+}
+
+.producto-card{
+    display: inline-block;
+    margin: 1rem;
+    padding: 1rem;
+    box-shadow: 0px 4px 4px 6px #aaa;
+    
+}
+
+.producto-card img{
+    border-radius: 5%;
+    width: auto;
+    height: 150px;
+    display: flex;
+    flex-flow: row wrap;
+    margin: auto;
+    justify-content: center;
+}
+
+mat-card-title{
+    color:red;
+}
+
+.fond{
+    background-color: crimson;
+    color: white;
+    text-align: center;
+    padding: 6px;
+}
