@@ -73,14 +73,14 @@
       "id": "1"
     },
     {
-      "id": "4fa8",
       "nombre": "Monitor 20pulgadas",
-      "categoria": "Monitores",
+      "categoria": "Accesorios",
       "isAvailable": true,
       "cantidadStock": "30",
       "precio": "1500",
       "fechaAgregado": "2024-11-26T05:00:00.000Z",
-      "imagen": "https://http2.mlstatic.com/D_NQ_NP_958641-MEC76277875087_052024-O.webp"
+      "imagen": "https://http2.mlstatic.com/D_NQ_NP_958641-MEC76277875087_052024-O.webp",
+      "id": "4fa8"
     }
   ]
 }
