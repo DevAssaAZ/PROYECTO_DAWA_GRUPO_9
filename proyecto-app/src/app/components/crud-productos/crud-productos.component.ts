@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { Producto } from '../../models/Producto';
 import { ProductosjsonService } from '../../services/productosjson.service';
+import { NotificationComponent } from '../../shared/notification/notification.component';
 
 @Component({
   selector: 'app-crud-productos',
@@ -54,7 +55,7 @@ export class CrudProductosComponent implements OnInit, AfterViewInit{
   }
 
   
-  constructor(private productoService:ProductosjsonService, private fb: FormBuilder, private dialog: MatDialog){
+  constructor(private productoService:ProductosjsonService, private fb: FormBuilder, private dialog: MatDialog, private noti: MatDialog){
   }
 
   getProductos(): void{
@@ -85,7 +86,15 @@ export class CrudProductosComponent implements OnInit, AfterViewInit{
     dialogRef.afterClosed().subscribe(result=>{
       if(result==="Aceptar"){
         this.productoService.deleteProducto(producto).subscribe(()=>{
-          alert("Eliminado exitosamente");
+          // alert("Eliminado exitosamente");
+          const notiRef = this.noti.open(NotificationComponent,{
+            data:{
+              titulo:"CONFIRMACION",
+              contenido: "Se elimino Satisfactoriamente"
+            }
+          });
+          notiRef.afterClosed().subscribe(result=>{
+          });
           this.getProductos(); //actualizar el dataSource
         });
       }else if(result==="Cancelar"){
@@ -144,7 +153,15 @@ export class CrudProductosComponent implements OnInit, AfterViewInit{
       dialogRef.afterClosed().subscribe(result=>{
         if(result==="Aceptar"){
           this.productoService.updateProducto(newProducto).subscribe((updateProducto)=>{
-            alert("Producto editado exitosamente");
+            // alert("Producto editado exitosamente");
+            const notiRef = this.noti.open(NotificationComponent,{
+              data:{
+                titulo:"CONFIRMACION",
+                contenido: "Se edito Exitosamente"
+              }
+            });
+            notiRef.afterClosed().subscribe(result=>{
+            });
             this.clearForm();
             this.getProductos(); // actualizar el datasource de la table de productos
           });
@@ -164,7 +181,15 @@ export class CrudProductosComponent implements OnInit, AfterViewInit{
       dialogRef.afterClosed().subscribe(result=>{
         if(result==="Aceptar"){
           this.productoService.addProductos(newProducto).subscribe((addProductos)=>{
-            alert("Producto agregado exitosamente");
+            // alert("Producto agregado exitosamente");
+            const notiRef = this.noti.open(NotificationComponent,{
+              data:{
+                titulo:"CONFIRMACION",
+                contenido: "Se agrego Exitosamente"
+              }
+            });
+            notiRef.afterClosed().subscribe(result=>{
+            });
             this.clearForm();
             this.getProductos(); // actualizar el datasource de la table de productos
           });
