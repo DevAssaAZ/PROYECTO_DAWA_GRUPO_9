@@ -13,6 +13,9 @@ import { MatSelect } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../../shared/dialog/dialog.component';
+import { NotificationComponent } from '../../shared/notification/notification.component';
 
 @Component({
   selector: 'app-crud-clientes',
@@ -43,7 +46,7 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
   ngAfterViewInit(): void {
     this.dataSource.paginator= this.paginator;
   }
-  constructor(private clienteService:ClientesjsonService, private fb: FormBuilder){
+  constructor(private clienteService:ClientesjsonService, private fb: FormBuilder, private mydialog: MatDialog, private noti: MatDialog){
   }
   getClientes():void{
     this.clienteService.getClientes().subscribe((datos:Clientes[])=>{
@@ -64,12 +67,32 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
 
   }
   eliminar(cliente:Clientes){
+    const dialogRef = this.mydialog.open(DialogComponent,{
+      data:{
+        titulo:"Eliminar " ,
+        contenido: 'Desea eliminar este cliente' +  " ?"
+      }
+    }); 
+    dialogRef.afterClosed().subscribe(result=>
+      {if(result==="Aceptar"){
     this.clienteService.deleteCliente(cliente).subscribe(()=>{
       alert("Eliminado con éxito");
       this.getClientes();
+      const notiRef = this.noti.open(NotificationComponent,{
+        data:{
+          titulo:"CONFIRMACION",
+          contenido: "Se elimino Satisfactoriamente"
+        }
+      });
+      notiRef.afterClosed().subscribe(result=>{
+      });
+      this.getClientes();
+    });
+  }else if(result==="Cancelar"){
+    this.getClientes();
+    }
     });
   }
   editar(cliente:Clientes){
-
   }
 }

@@ -33,13 +33,50 @@
     },
     {
       "id": "3",
-      "nombre": "Jorge Díaz",
-      "email": "jorge@gmail.com",
-      "telefono": "0985647932",
-      "direccion": "urdesa central",
-      "fechaRegistro": "2023-01-25",
+      "nombre": "Tito Pérez",
+      "email": "carlos.perez90@gmail.com",
+      "telefono": "0987456321",
+      "direccion": "Av. Quito y Guayaquil",
+      "fechaRegistro": "2024-11-25",
       "estado": "Activo"
+    },
+    {
+      "id": "4",
+      "nombre": "Ana Martínez",
+      "email": "ana.martinez@gmail.com",
+      "telefono": "0981122334",
+      "direccion": "Barrio Central, Manta",
+      "fechaRegistro": "2024-11-20",
+      "estado": "Inactivo"
+    },
+    {
+      "id": "5",
+      "nombre": "Pedro Gómez",
+      "email": "pedro.gomez@gmail.com",
+      "telefono": "0989988776",
+      "direccion": "Ciudadela Universitaria",
+      "fechaRegistro": "2024-11-22",
+      "estado": "Activo"
+    },
+    {
+      "id": "6",
+      "nombre": "María Fernández",
+      "email": "mariaf@gmail.com",
+      "telefono": "0985678901",
+      "direccion": "Calle Bolívar, Quito",
+      "fechaRegistro": "2024-11-24",
+      "estado": "Activo"
+    },
+    {
+      "id": "7",
+      "nombre": "José Sánchez",
+      "email": "jose.sanchez@yahoo.com",
+      "telefono": "0987654321",
+      "direccion": "Av. Amazonas, Guayaquil",
+      "fechaRegistro": "2024-11-18",
+      "estado": "Inactivo"
     }
+    
   ],
   "soporte": [
     {
