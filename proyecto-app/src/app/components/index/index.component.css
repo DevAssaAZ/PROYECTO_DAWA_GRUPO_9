@@ -1,0 +1,28 @@
+.contenedor{
+    border: 1px solid gray;
+    padding: 15px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+.titulo{
+    text-align: center;
+}
+
+.kodfun-galeri{
+    display: flex;
+    height: 20rem;
+    gap: 1rem
+}
+.kodfun-galeri > div{
+    flex:1;
+    border-radius: 1rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    transition: all .8s cubic-bezier(.25,.4,.45,1.4);
+}
+.kodfun-galeri > div:hover{
+    flex: 5;
+}
