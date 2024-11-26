@@ -6,7 +6,6 @@ import { SoportejsonService } from '../../services/soportejson.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Soporte } from '../../models/SolicitudesSoporte';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
-import { NotificationComponent } from '../../shared/notification/notification.component';
 import { DatePipe, NgIf } from '@angular/common';
 import { MatError, MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatNativeDateModule, MatOption } from '@angular/material/core';
@@ -16,6 +15,7 @@ import { MatInput, MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
+import { NotificationComponent } from '../../shared/notification/notification.component';
 
 @Component({
   selector: 'app-crud-solicitud-soporte',
