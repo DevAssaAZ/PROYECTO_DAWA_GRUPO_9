@@ -1,7 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, OnInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTable, MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { SoportejsonService } from '../../services/soportejson.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Soporte } from '../../models/SolicitudesSoporte';
@@ -13,12 +13,16 @@ import { MatNativeDateModule, MatOption } from '@angular/material/core';
 import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { MatDatepicker, MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatInput, MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-crud-solicitud-soporte',
   standalone: true,
   imports: [MatPaginator,MatTable,DatePipe,MatLabel,MatFormField,MatOption,MatSelect,MatSelectModule,MatError,MatDatepicker,MatDatepickerToggle,MatDatepickerModule,
-    MatInputModule,MatFormFieldModule,MatNativeDateModule,ReactiveFormsModule,NgIf],
+    MatInputModule,MatFormFieldModule,MatNativeDateModule,ReactiveFormsModule,NgIf,MatInput,MatPaginatorModule,MatTableModule,MatButtonModule,MatCheckboxModule,
+    MatRadioModule],
   templateUrl: './crud-solicitud-soporte.component.html',
   styleUrl: './crud-solicitud-soporte.component.css'
 })
