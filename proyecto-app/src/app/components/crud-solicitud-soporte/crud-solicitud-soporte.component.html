@@ -9,7 +9,7 @@
         <mat-error>
             <ng-container *ngIf="form.get('numeroCaso')?.invalid && (form.get('numeroCaso')?.dirty || form.get('numeroCaso')?.touched)">
                 <ng-container *ngIf="form.get('numeroCaso')?.errors?.['required']">Numero de caso es requerido</ng-container>
-                <ng-container *ngIf="form.get('numeroCaso')?.errors?.['minlength']">Numero de caso mínimo 3 caracteres</ng-container>
+                <ng-container *ngIf="form.get('numeroCaso')?.errors?.['minlength']">Numero de caso mínimo 5 caracteres</ng-container>
             </ng-container>
         </mat-error>
     </mat-form-field>
@@ -53,13 +53,12 @@
 
     <mat-form-field class="formElement">
         <mat-label>Estado: </mat-label>
-        <mat-select formControlName="estado">
-            <mat-option value="">SELECCIONE...</mat-option>
+        <mat-select formControlName="estado" (selectionChange)="onEstadoChange($event)">
             <mat-option value="Pendiente">PENDIENTE</mat-option>
-            <mat-option value="En Revisión">EN REVISIÓN</mat-option>
+            <mat-option value="En Revision">EN REVISION</mat-option>
             <mat-option value="Aceptado">ACEPTADO</mat-option>
             <mat-option value="Rechazado">RECHAZADO</mat-option>
-        </mat-select>
+          </mat-select>
     </mat-form-field>
 
     <div class="actions">

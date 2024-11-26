@@ -10,14 +10,14 @@ import { NotificationComponent } from '../../shared/notification/notification.co
 import { DatePipe, NgIf } from '@angular/common';
 import { MatError, MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { MatNativeDateModule, MatOption } from '@angular/material/core';
-import { MatSelect } from '@angular/material/select';
+import { MatSelect, MatSelectModule } from '@angular/material/select';
 import { MatDatepicker, MatDatepickerModule, MatDatepickerToggle } from '@angular/material/datepicker';
 import { MatInput, MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-crud-solicitud-soporte',
   standalone: true,
-  imports: [MatPaginator,MatTable,DatePipe,MatLabel,MatFormField,MatOption,MatSelect,MatError,MatDatepicker,MatDatepickerToggle,MatDatepickerModule,
+  imports: [MatPaginator,MatTable,DatePipe,MatLabel,MatFormField,MatOption,MatSelect,MatSelectModule,MatError,MatDatepicker,MatDatepickerToggle,MatDatepickerModule,
     MatInputModule,MatFormFieldModule,MatNativeDateModule,ReactiveFormsModule,NgIf],
   templateUrl: './crud-solicitud-soporte.component.html',
   styleUrl: './crud-solicitud-soporte.component.css'
@@ -45,7 +45,7 @@ export class CrudSolicitudSoporteComponent {
       descripcion: ["", [Validators.required, Validators.minLength(5)]],
       producto: ["", [Validators.required]],
       fecha_solicitud: ["", [Validators.required]],
-      estado: ["Pendiente", Validators.required],
+      estado: ['Pendiente', [Validators.required]],
     });
   }
 
@@ -170,6 +170,10 @@ export class CrudSolicitudSoporteComponent {
     }
   }
 
+  onEstadoChange(event: any): void {
+    console.log('Estado seleccionado:', event.value);
+  }
+
   // Limpiar formulario
   clearForm(): void {
     this.form.reset({
@@ -184,3 +188,4 @@ export class CrudSolicitudSoporteComponent {
     this.currentId = '';
   }
 }
+
