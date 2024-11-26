@@ -105,12 +105,12 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
     if(this.isEditMode){
       newDevolucion.id = this.currentId;
       this.devolucionesService.updateDevolucion(newDevolucion).subscribe((updateDevolucion)=>{
-        alert("Pelicula fue editada exitosamente");
+        alert("Edicion para la respectiva devolucion fue editada exitosamente");
         this.getDevoluciones();
       });
     } else{
       this.devolucionesService.addDevolucion(newDevolucion).subscribe((addDevolucion)=>{
-        alert("Pelicula fue agregada exitosamente");
+        alert("Proceso de devolucion agregada exitosamente");
         this.getDevoluciones();
       });
     }
