@@ -1,6 +1,13 @@
-<h2 mat-dialog-title>{{data.titulo}}</h2>
-<mat-dialog-content>{{data.contenido}}</mat-dialog-content>
-<mat-dialog-actions>
-    <button mat-button (click)="onAceptar()">Aceptar</button>
-    <button mat-button (click)="onCancelar()">Cancelar</button>
+<div class="titulo">
+    <h2 mat-dialog-title>{{data.titulo}}</h2>
+</div>
+<div class="contenido">
+    <mat-dialog-content>{{data.contenido}}</mat-dialog-content>
+</div>
+<mat-dialog-actions class="center">
+    <div class="espacioDeBtn">
+        <button mat-button class="btnAceptar" (click)="onAceptar()">Aceptar</button>
+
+        <button mat-button class="btnCancelar" (click)="onCancelar()">Cancelar</button>
+    </div>
 </mat-dialog-actions>

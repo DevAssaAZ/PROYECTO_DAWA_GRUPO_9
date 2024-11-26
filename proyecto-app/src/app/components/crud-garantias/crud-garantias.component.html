@@ -98,6 +98,7 @@
 
     <div class="actions">
         <button mat-raised-button color="primary" type="submit">Guardar</button>
+        <div class="separar"></div>
             <button mat-raised-button color="primary"  type="reset">Cancelar</button>
     </div>
 
@@ -150,6 +151,8 @@
         <th mat-header-cell *matHeaderCellDef> Acciones </th>
         <td mat-cell *matCellDef="let pelicula">
             <button mat-raised-button color="accent" (click)="editar(pelicula)">Editar</button>
+            <div class="separart">
+            </div>
             <button mat-raised-button color="warn" (click)="eliminar(pelicula)">Eliminar</button>
         </td>
     </ng-container>
