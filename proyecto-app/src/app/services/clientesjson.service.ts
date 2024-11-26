@@ -26,4 +26,14 @@ export class ClientesjsonService {
   addCliente(cliente: Clientes):Observable<Clientes> {
     return this.http.post<Clientes>(this.jsonUrl, cliente);
   }
+
+  updateCliente(cliente: Clientes):Observable<Clientes> {
+    const urlDelCliente = `${this.jsonUrl}/${cliente.id}`
+    return this.http.put<Clientes>(urlDelCliente, cliente);
+  }
+
+  deleteCliente(cliente: Clientes):Observable<void> {
+    const urlDelCliente = `${this.jsonUrl}/${cliente.id}`
+    return this.http.delete<void>(urlDelCliente);
+  }
 }
