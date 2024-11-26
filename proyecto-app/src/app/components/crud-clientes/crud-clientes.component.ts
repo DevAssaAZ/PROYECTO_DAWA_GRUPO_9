@@ -1,15 +1,18 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { Clientes } from '../../models/Clientes';
 import { MatPaginator } from '@angular/material/paginator';
 import { ClientesjsonService } from '../../services/clientesjson.service';
 import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-crud-clientes',
   standalone: true,
-  imports: [MatFormField, MatLabel],
+  imports: [MatFormField, MatLabel, MatButtonModule, MatInputModule, MatTableModule, MatPaginator, DatePipe],
   templateUrl: './crud-clientes.component.html',
   styleUrl: './crud-clientes.component.css'
 })

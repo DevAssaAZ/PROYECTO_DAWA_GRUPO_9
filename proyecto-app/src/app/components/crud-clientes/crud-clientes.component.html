@@ -8,6 +8,45 @@
     <button (click)="search(searchInput)" > Buscar </button>
 </div>
 
-<table>
-
+<table mat-table [dataSource] = "dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Id de Cliente </th>
+        <td mat-cell *matCellDef="let cliente"> {{cliente.id}}</td>
+    </ng-container>
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre del cliente</th>
+        <td mat-cell *matCellDef="let cliente"> {{cliente.nombre}}</td>
+    </ng-container>
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email</th>
+        <td mat-cell *matCellDef="let cliente"> {{cliente.email}}</td>
+    </ng-container>
+    <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef> Número de teléfono</th>
+        <td mat-cell *matCellDef="let cliente"> {{cliente.telefono}}</td>
+    </ng-container>
+    <ng-container matColumnDef="direccion">
+        <th mat-header-cell *matHeaderCellDef> Dirección</th>
+        <td mat-cell *matCellDef="let cliente"> {{cliente.direccion}}</td>
+    </ng-container>
+    <ng-container matColumnDef="fechaRegistro">
+        <th mat-header-cell *matHeaderCellDef> Fecha de registro</th>
+        <td mat-cell *matCellDef="let cliente"> {{cliente.fechaRegistro | date: 'dd/MM/yyyy'}}</td>
+    </ng-container>
+    <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef> Estado</th>
+        <td mat-cell *matCellDef="let cliente"> {{cliente.estado}}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let cliente">
+            <button mat-raised-button color="accent">Editar</button>
+            <div class="separart">
+            </div>
+            <button mat-raised-button color="warn">Eliminar</button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="['id','nombre','email', 'telefono','direccion','fechaRegistro','estado','actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns:['id','nombre','email', 'telefono','direccion','fechaRegistro','estado','actions'];"></tr>
 </table>
+<mat-paginator [pageSizeOptions]="[5,7,20]" aria-label="select page" showFirstLastButtons></mat-paginator>
