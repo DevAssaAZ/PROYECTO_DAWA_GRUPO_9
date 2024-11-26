@@ -42,8 +42,8 @@
       "fecha_solicitud":"2024-11-24",
       "estado": "Pendiente"
     }
-<<<<<<< Updated upstream
-  ],"devoluciones":[
+  ],
+  "devoluciones":[
     {
       "id": 1,
       "cliente": "Juan Pérez",
@@ -59,7 +59,7 @@
       "descripcion": "El teléfono no enciende.",
       "fechaSolicitud": "2024-11-12",
       "estado": "En proceso"
-=======
+    }
   ],
   "productos":[
     {
@@ -71,7 +71,6 @@
       "precio": 25000,
       "fechaAgregado": "2024-11-25",
       "imagen": ""
->>>>>>> Stashed changes
     }
   ]
 }
