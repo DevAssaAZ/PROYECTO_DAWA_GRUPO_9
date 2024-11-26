@@ -1,0 +1,86 @@
+.footer {
+  background-color: #343a40;
+  color: white;
+  padding: 20px 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Redes sociales */
+.social-media {
+  text-align: left;
+}
+
+.social-media h5 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.social-media .icons a {
+  margin: 0 10px;
+  color: white;
+  font-size: 24px;
+  transition: color 0.3s ease;
+}
+
+.social-media .icons a:hover {
+  color: #007bff;
+}
+
+/* Nombre de la empresa */
+.company-name {
+  text-align: center;
+  flex-grow: 1;
+}
+
+.company-name h4 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.company-name p {
+  margin: 5px 0 10px;
+  font-size: 0.9rem;
+}
+
+/* Integrantes */
+.team {
+  text-align: left;
+}
+
+.team h5 {
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+}
+
+.team ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.team ul li {
+  margin: 5px 0;
+}
+
+.team ul li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.team ul li a:hover {
+  color: #007bff;
+}
+
+mat-icon {
+  font-size: 25px;
+  vertical-align: middle;
+}
