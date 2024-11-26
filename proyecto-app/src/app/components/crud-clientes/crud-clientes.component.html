@@ -1,36 +1,88 @@
-<p>Crud Clientes</p>
+<p class ="titulo">Crud Clientes</p>
 
 <form [formGroup]="form" class = "ocultar" (submit)="onSubmit()">
     <mat-form-field class="formElement">
         <mat-label> Id: </mat-label>
         <input matInput type="number" placeholder="0" formControlName="id"/>
+        <mat-error>
+            @if(form.get('id')?.invalid && (form.get("id")?.dirty || form.get('id')?.touched)){
+                @if(form.get('id')?.errors?.['required']){
+                    El id del cliente es requerido
+                }@else if(form.get('id')?.errors?.['minlength']){
+                    Id del cliente mínimo 1 caracter
+
+                }@else if(form.get('id')?.errors?.['patterns']){
+                    Solo numeros
+                }
+            }
+        </mat-error>
     </mat-form-field>
+
     <mat-form-field class="formElement">
         <mat-label> Nombre: </mat-label>
         <input matInput type="text" placeholder="nombre" formControlName="nombre"/>
+        <mat-error>
+            @if(form.get('nombre')?.invalid && (form.get("nombre")?.dirty || form.get('nombre')?.touched)){
+                @if(form.get('nombre')?.errors?.['required']){
+                    Nombre es requerido
+                }@else if(form.get('nombre')?.errors?.['minlength']){
+                    Nombre minimo 3 caracteres
+                }@else if(form.get('nombre')?.errors?.['patterns']){
+                    Solo letras 
+                }
+            }
+        </mat-error>
     </mat-form-field>
+
     <mat-form-field class="formElement">
         <mat-label> Email: </mat-label>
         <input matInput type="text" placeholder="email" formControlName="email"/>
+        <mat-error>
+            @if(form.get('email')?.invalid && (form.get("email")?.dirty || form.get('email')?.touched)){
+                @if(form.get('email')?.errors?.['required']){
+                    Email es requerido
+                }@else if(form.get('email')?.errors?.['minlength']){
+                    Email minimo 7 caracteres
+                }@else if(form.get('email')?.errors?.['patterns']){
+                    Solo letras y nuneros
+                }
+            }
+        </mat-error>
     </mat-form-field>
+
     <mat-form-field class="formElement">
         <mat-label> Telefono: </mat-label>
         <input matInput type="number" placeholder="0" formControlName="telefono"/>
     </mat-form-field>
+
     <mat-form-field class="formElement">
         <mat-label> Direccion </mat-label>
         <input matInput type="text" placeholder="direccion" formControlName="direccion"/>
     </mat-form-field>
+
     <mat-form-field class="formElement">
         <mat-label> Fecha de registro: </mat-label>
         <input matInput [matDatepicker]="picker" placeholder="fecha" formControlName="fechaRegistro"/>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+
     <mat-form-field class="formElement">
         <mat-label> Estado </mat-label>
         <input matInput type="text" placeholder="estado" formControlName="estado"/>
+        <mat-error>
+            @if(form.get('estado')?.invalid && (form.get("estado")?.dirty || form.get('estado')?.touched)){
+                @if(form.get('estado')?.errors?.['required']){
+                    Estado es requerido
+                }@else if(form.get('estado')?.errors?.['minlength']){
+                    Estado minimo 6 caracteres
+                }@else if(form.get('estado')?.errors?.['patterns']){
+                    Solo letras 
+                }
+            }
+        </mat-error>
     </mat-form-field>
+
     <div class="actions">
         <button mat-raised-button color="primary" type="submit">Guardar</button>
         <div class="separar">
