@@ -1,19 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Devolucion } from '../models/Devolucion';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DevolucionesjsonService {
-  private jsonUrl="../json/devoluciones.json";   //ruta del archivo
+  private jsonUrl="../json/datos.json";   //ruta del archivo
   constructor(private http:HttpClient) {  //inyeccion de httpClient
 
   }
 
   getDevoluciones():Observable<Devolucion[]>{ //obtener la lista de peliculas desde el archivo
     return this.http.get<Devolucion[]>(this.jsonUrl);
+  }
+
+  getDevolucionSearch(cliente?:string):Observable<Devolucion[]>{
+    return this.http.get<Devolucion[]>(this.jsonUrl).pipe(
+        map((devoluciones)=>
+        devoluciones.filter((devolucion)=>
+        (cliente ? devolucion.cliente.toLowerCase().includes(cliente.toLowerCase()):true)
+        )
+      )
+    );
   }
 
   addDevolucion(devolucion: Devolucion): Observable<Devolucion> {
