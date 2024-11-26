@@ -94,17 +94,31 @@
       "id": "1",
       "cliente": "Juan Pérez",
       "producto": "Laptop",
+      "cantidad": "1",
       "descripcion": "La laptop tiene un defecto en la pantalla.",
       "fechaSolicitud": "2024-11-10",
-      "estado": "Pendiente"
+      "estado": "Pendiente",
+      "prioridad": true
     },
     {
       "id": "2",
       "cliente": "María García",
       "producto": "Teléfono",
+      "cantidad": "1",
       "descripcion": "El teléfono no enciende.",
       "fechaSolicitud": "2024-11-12",
-      "estado": "En proceso"
+      "estado": "En Revision",
+      "prioridad": false
+    },
+    {
+      "id": "3",
+      "cliente": "Carlos Manrique",
+      "producto": "Teléfono",
+      "cantidad": "1",
+      "descripcion": "El teléfono se queda reiniciando.",
+      "fechaSolicitud": "2024-11-12",
+      "estado": "Devolucion Resuelto",
+      "prioridad": true
     }
   ],
   "productos": [

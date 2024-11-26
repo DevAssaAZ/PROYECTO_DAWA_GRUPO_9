@@ -13,8 +13,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
-import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
-import { DialogComponent } from '../../shared/dialog/dialog.component';
+import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { MyDialogComponent } from '../utiles/my-dialog/my-dialog.component';
 
 
 
@@ -22,12 +22,11 @@ import { DialogComponent } from '../../shared/dialog/dialog.component';
 @Component({
   selector: 'app-crud-devoluciones',
   standalone: true,
-  imports: [ReactiveFormsModule,CommonModule,MatFormField,MatButtonModule,MatInputModule,MatPaginatorModule,DatePipe,MatTableModule,MatRadioModule,MatSelectModule,MatCheckboxModule,MatDatepickerModule,MatOptionModule, MatFormFieldModule,MatNativeDateModule,ReactiveFormsModule,],
+  imports: [MatLabel,ReactiveFormsModule,CommonModule,MatFormField,MatButtonModule,MatInputModule,MatPaginatorModule,DatePipe,MatTableModule,MatRadioModule,MatSelectModule,MatCheckboxModule,MatDatepickerModule,MatOptionModule, MatFormFieldModule,MatNativeDateModule,ReactiveFormsModule,],
   templateUrl: './crud-devoluciones.component.html',
   styleUrl: './crud-devoluciones.component.css'
 })
 export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
-  title= "Crud devoluciones a hacer";
   form!: FormGroup;
   isEditMode:boolean = false;
   currentId!: number;
@@ -40,7 +39,7 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
   fechaMaxima: Date = new Date();//fecha actual
 
 
-  displayedColumns: string[] = ['id', 'cliente', 'producto', 'descripcion', 'fechaSolicitud', 'estado', 'acciones'];
+  displayedColumns: string[] = ['cliente', 'producto', 'descripcion', 'fechaSolicitud', 'estado', 'acciones'];
 
    
   ngAfterViewInit(): void{
@@ -51,12 +50,13 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
     this.getDevoluciones();
     //inicializar las variables asociadas a los componentes del formulario
     this.form = this.fb.group({
-      id: [''],
       cliente: ['', [Validators.required, Validators.minLength(3)]],
       producto: ['', [Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9]+$/)]],
+      cantidad:[''],
       descripcion: ['', Validators.required],
-      estado: [],
-      fechaSolicitud: ['', Validators.required]
+      estado: [''],
+      fechaSolicitud: ['', Validators.required],
+      prioridad:[false],
     });
   }
   
@@ -80,12 +80,13 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
     }
 
     this.form.setValue({
-      id: devolucion.id,
       cliente: devolucion.cliente,
       producto: devolucion.producto,
+      cantidad: devolucion.cantidad,
       descripcion:devolucion.descripcion,
       fechaSolicitud: devolucion.fechaSolicitud,
       estado: devolucion.estado,
+      prioridad: devolucion.prioridad,
     });
 
   }
@@ -120,12 +121,13 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
 
   clearForm():void{
     this.form.reset({
-      id:'',
       cliente:'',
+      cantidad:'',
       producto:'',
       descripcion:'',
       fechaSolicitud:'',
       estado:'',
+      prioridad:'',
     });
     this.currentId=0;
     this.isEditMode=false;
@@ -144,7 +146,7 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
 
   deleteDevolucion(devolucion:Devolucion){
 
-    const dialogRef=this.mydialog.open(DialogComponent, {
+    const dialogRef=this.mydialog.open(MyDialogComponent, {
       data:{
         titulo: "Eliminacion de la devolucion",
         contenido: "Estas seguro de eliminar la devolucion del producto " +devolucion.producto + " ?"

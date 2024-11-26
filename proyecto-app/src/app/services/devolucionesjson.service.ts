@@ -7,7 +7,7 @@ import { Devolucion } from '../models/Devolucion';
   providedIn: 'root'
 })
 export class DevolucionesjsonService {
-  private jsonUrl="../json/datos.json";   //ruta del archivo
+  private jsonUrl="http://localhost:3000/devoluciones";   //ruta del archivo
   constructor(private http:HttpClient) {  //inyeccion de httpClient
 
   }
@@ -15,6 +15,7 @@ export class DevolucionesjsonService {
   getDevoluciones():Observable<Devolucion[]>{ //obtener la lista de peliculas desde el archivo
     return this.http.get<Devolucion[]>(this.jsonUrl);
   }
+
 
   getDevolucionSearch(cliente?:string):Observable<Devolucion[]>{
     return this.http.get<Devolucion[]>(this.jsonUrl).pipe(
