@@ -33,6 +33,8 @@
     </mat-form-field>
     <div class="actions">
         <button mat-raised-button color="primary" type="submit">Guardar</button>
+        <div class="separar">
+        </div>
         <button mat-raised-button color="primary" type="reset">Cancelar</button>
     </div>
 </form>
@@ -78,10 +80,10 @@
     <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef> Acciones </th>
         <td mat-cell *matCellDef="let cliente">
-            <button mat-raised-button color="accent">Editar</button>
-            <div class="separart">
+            <button mat-raised-button color="accent" (click)="editar(cliente)">Editar</button>
+            <div class="separar">
             </div>
-            <button mat-raised-button color="warn">Eliminar</button>
+            <button mat-raised-button color="warn" (click)="eliminar(cliente)">Eliminar</button>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="['id','nombre','email', 'telefono','direccion','fechaRegistro','estado','actions']"></tr>

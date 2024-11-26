@@ -24,12 +24,21 @@
     },
     {
       "id": "2",
-      "nombre": "María Gómez",
-      "email": "maria.gomez@gmail.com",
-      "telefono": "0998765432",
-      "direccion": "Av delta",
-      "fechaRegistro": "2024-11-22",
+      "nombre": "Luisa Rodriguez",
+      "email": "luisa13@gmail.com",
+      "telefono": "0986547458",
+      "direccion": "Calle esmeraldas",
+      "fechaRegistro": "2024-11-26",
       "estado": "Inactivo"
+    },
+    {
+      "id": "3",
+      "nombre": "Jorge Díaz",
+      "email": "jorge@gmail.com",
+      "telefono": "0985647932",
+      "direccion": "urdesa central",
+      "fechaRegistro": "2023-01-25",
+      "estado": "Activo"
     }
   ],
   "soporte": [

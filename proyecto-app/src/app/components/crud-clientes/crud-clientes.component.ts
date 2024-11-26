@@ -30,6 +30,15 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngOnInit(): void {
     this.getClientes();
+    this.form = this.fb.group({
+      id: [""],
+      nombre: [""],
+      email: [""],
+      telefono:[""],
+      direccion:[""],
+      fechaRegistro:[""],
+      estado:[""]
+    })
   }
   ngAfterViewInit(): void {
     this.dataSource.paginator= this.paginator;
@@ -52,6 +61,15 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
     }
   }
   onSubmit(){
+
+  }
+  eliminar(cliente:Clientes){
+    this.clienteService.deleteCliente(cliente).subscribe(()=>{
+      alert("Eliminado con éxito");
+      this.getClientes();
+    });
+  }
+  editar(cliente:Clientes){
 
   }
 }

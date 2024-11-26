@@ -19,9 +19,12 @@ form{
 }
 
 .actions{
+    margin-bottom: 40px;
     padding: 30px;
     margin: 15px;
+    margin-right: 10px; 
 }
+
 .separar{
     display:inline-block;
     padding: 15px;
