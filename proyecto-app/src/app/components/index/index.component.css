@@ -32,3 +32,22 @@
     margin-top: 30px;
     text-align: justify;
 }
+section{
+    width: 90%;
+    border-radius: 5px;
+    border: 1px solid black;
+    box-shadow: 1px 0 4px rgb(0,0,0, .5);
+    margin-bottom: 15px;
+    padding: 55px;
+    align-content: center;
+    text-align: center;
+    margin:auto;
+}
+section h2{
+    text-align: left;
+    color:red;
+}
+section p{
+    color: black;
+    text-align: justify;
+}

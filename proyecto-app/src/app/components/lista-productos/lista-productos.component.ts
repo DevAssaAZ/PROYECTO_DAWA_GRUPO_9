@@ -7,11 +7,12 @@ import { Producto } from '../../models/Producto';
 import { ProductosjsonService } from '../../services/productosjson.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
+import { FooterComponent } from "../../shared/footer/footer.component";
 
 @Component({
   selector: 'app-lista-productos',
   standalone: true,
-  imports: [UpperCasePipe, CurrencyPipe, MatCardModule, MatIconModule, MatButtonModule],
+  imports: [UpperCasePipe, CurrencyPipe, MatCardModule, MatIconModule, MatButtonModule, FooterComponent],
   templateUrl: './lista-productos.component.html',
   styleUrl: './lista-productos.component.css'
 })
