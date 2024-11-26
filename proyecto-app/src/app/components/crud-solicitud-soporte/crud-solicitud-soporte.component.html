@@ -1,1 +1,119 @@
-<p>crud-solicitud-soporte works!</p>
+<br/><br/>
+<div class="titulo">
+    <h1>{{title}}</h1>
+</div>
+<form [formGroup]="form" class="ocultar" (submit)="onSubmit()">
+    <mat-form-field class="formElement">
+        <mat-label>Numero de Caso: </mat-label>
+        <input matInput type="text" placeholder="Numero de Caso" formControlName="numeroCaso"/>
+        <mat-error>
+            <ng-container *ngIf="form.get('numeroCaso')?.invalid && (form.get('numeroCaso')?.dirty || form.get('numeroCaso')?.touched)">
+                <ng-container *ngIf="form.get('numeroCaso')?.errors?.['required']">Numero de caso es requerido</ng-container>
+                <ng-container *ngIf="form.get('numeroCaso')?.errors?.['minlength']">Numero de caso mínimo 3 caracteres</ng-container>
+            </ng-container>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="formElement">
+        <mat-label>Nombre del Cliente: </mat-label>
+        <input matInput type="text" placeholder="Nombre del Cliente" formControlName="clienteNombre"/>
+        <mat-error>
+            <ng-container *ngIf="form.get('clienteNombre')?.invalid && (form.get('clienteNombre')?.dirty || form.get('clienteNombre')?.touched)">
+                <ng-container *ngIf="form.get('clienteNombre')?.errors?.['required']">Nombre del Cliente es requerido</ng-container>
+            </ng-container>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="formElement">
+        <mat-label>Producto: </mat-label>
+        <input matInput type="text" placeholder="Producto" formControlName="producto"/>
+        <mat-error>
+            <ng-container *ngIf="form.get('producto')?.invalid && (form.get('producto')?.dirty || form.get('producto')?.touched)">
+                <ng-container *ngIf="form.get('producto')?.errors?.['required']">Producto es requerido</ng-container>
+            </ng-container>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="formElement">
+        <mat-label>Fecha de Reporte: </mat-label>
+        <input matInput [matDatepicker]="picker1" type="text" placeholder="Fecha de Reporte" formControlName="fechaReporte"/>
+        <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="formElement">
+        <mat-label>Descripción: </mat-label>
+        <input matInput type="text" placeholder="Descripción" formControlName="descripcion"/>
+        <mat-error>
+            <ng-container *ngIf="form.get('descripcion')?.invalid && (form.get('descripcion')?.dirty || form.get('descripcion')?.touched)">
+                <ng-container *ngIf="form.get('descripcion')?.errors?.['required']">Descripción es requerida</ng-container>
+            </ng-container>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="formElement">
+        <mat-label>Estado: </mat-label>
+        <mat-select formControlName="estado">
+            <mat-option value="">SELECCIONE...</mat-option>
+            <mat-option value="Pendiente">PENDIENTE</mat-option>
+            <mat-option value="En Revisión">EN REVISIÓN</mat-option>
+            <mat-option value="Aceptado">ACEPTADO</mat-option>
+            <mat-option value="Rechazado">RECHAZADO</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <div class="actions">
+        <button mat-raised-button color="primary" type="submit">Guardar</button>
+        <div class="separar"></div>
+        <button mat-raised-button color="primary" type="reset">Cancelar</button>
+    </div>
+</form>
+
+<div class="search-container">
+    <mat-form-field>
+        <mat-label>Buscar: </mat-label>
+        <input matInput type="search" placeholder="Número de Caso o Estado" #searchInput (keyup)="search(searchInput)"/>
+    </mat-form-field>
+    <button (click)="search(searchInput)" mat-raised-button color="primary">Buscar</button>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="numeroCaso">
+        <th mat-header-cell *matHeaderCellDef> Numero de Caso </th>
+        <td mat-cell *matCellDef="let soporte">{{soporte.numeroCaso}}</td>
+    </ng-container>
+    <ng-container matColumnDef="clienteNombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre del Cliente </th>
+        <td mat-cell *matCellDef="let soporte">{{soporte.clienteNombre}}</td>
+    </ng-container>
+    <ng-container matColumnDef="producto">
+        <th mat-header-cell *matHeaderCellDef> Producto </th>
+        <td mat-cell *matCellDef="let soporte">{{soporte.producto}}</td>
+    </ng-container>
+    <ng-container matColumnDef="fechaReporte">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Reporte </th>
+        <td mat-cell *matCellDef="let soporte">{{soporte.fechaReporte | date: 'dd/MM/yyyy'}}</td>
+    </ng-container>
+    <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef> Descripción </th>
+        <td mat-cell *matCellDef="let soporte">{{soporte.descripcion}}</td>
+    </ng-container>
+    <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let soporte">{{soporte.estado}}</td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let soporte">
+            <button mat-raised-button color="accent" (click)="editar(soporte)">Editar</button>
+            <div class="separar"></div>
+            <button mat-raised-button color="warn" (click)="eliminar(soporte)">Eliminar</button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['numeroCaso','clienteNombre','producto','fechaReporte','descripcion','estado','actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns:['numeroCaso','clienteNombre','producto','fechaReporte','descripcion','estado','actions'];"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" aria-label="select page" showFirstLastButtons>
+</mat-paginator>
