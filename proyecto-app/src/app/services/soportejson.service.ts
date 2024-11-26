@@ -11,7 +11,7 @@ export class SoportejsonService {
 
   constructor(private http: HttpClient) { }
 
-  // OBTENER TODOS LOS REGISTROS
+  // OBTENER REGISTROS
   getSoportes(): Observable<Soporte[]> {
     return this.http.get<Soporte[]>(this.jsonUrl);
   }
@@ -33,7 +33,7 @@ export class SoportejsonService {
     return this.http.post<Soporte>(this.jsonUrl, soporte);
   }
 
-  // MODIFICAR UN REGISTRO EXISTENTE
+  // MODIFICAR UN REGISTRO
   updateSoporte(soporte: Soporte): Observable<Soporte> {
     const urlDelSoporte = `${this.jsonUrl}/${soporte.id}`;
     return this.http.put<Soporte>(urlDelSoporte, soporte);
