@@ -44,6 +44,7 @@ export class CrudSolicitudSoporteComponent {
     this.getSoportes();
     // Inicializar el formulario
     this.form = this.fb.group({
+      id: ["", [Validators.required]],
       cliente_id: ["", [Validators.required]],
       titulo: ["", [Validators.required, Validators.minLength(5)]],
       descripcion: ["", [Validators.required, Validators.minLength(5)]],
@@ -108,6 +109,7 @@ export class CrudSolicitudSoporteComponent {
     this.currentId = soporte.id??"1";
 
     this.form.setValue({
+      id: soporte.id,
       cliente_id: soporte.cliente_id,
       titulo: soporte.titulo,
       descripcion: soporte.descripcion,
