@@ -44,18 +44,17 @@ export class CrudSolicitudSoporteComponent {
     this.getSoportes();
     // Inicializar el formulario
     this.form = this.fb.group({
-      id: ["", [Validators.required]],
-      cliente_id: ["", [Validators.required]],
-      titulo: ["", [Validators.required, Validators.minLength(5)]],
-      descripcion: ["", [Validators.required, Validators.minLength(5)]],
-      producto: ["", [Validators.required]],
+      id: ["", [Validators.required,Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
+      cliente_id: ["", [Validators.required,Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
+      descripcion: ["", [Validators.required, Validators.minLength(5),Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
+      producto: ["", [Validators.required,Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
       fecha_solicitud: ["", [Validators.required]],
       estado: ['Pendiente', [Validators.required]],
     });
   }
 
   constructor(private soporteService: SoportejsonService,private fb: FormBuilder,private mydialog: MatDialog,private noti: MatDialog) {
-    
+
   }
 
   // Obtener todos los soportes
@@ -108,7 +107,6 @@ export class CrudSolicitudSoporteComponent {
     this.form.setValue({
       id: soporte.id,
       cliente_id: soporte.cliente_id,
-      titulo: soporte.titulo,
       descripcion: soporte.descripcion,
       producto: soporte.producto,
       fecha_solicitud: soporte.fecha_solicitud,
