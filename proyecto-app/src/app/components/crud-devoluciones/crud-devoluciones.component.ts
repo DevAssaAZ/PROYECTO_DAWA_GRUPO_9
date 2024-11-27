@@ -30,6 +30,8 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
   form!: FormGroup;
   isEditMode:boolean = false;
   currentId!: number;
+  title:string = "CRUD de Devoluciones";
+
 
   //dataSource (fuente de datos) para mi tabla
   dataSource = new MatTableDataSource<Devolucion>();
@@ -37,9 +39,6 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
 
   fechaMinima: Date = new Date(1940, 0,1);
   fechaMaxima: Date = new Date();//fecha actual
-
-
-  displayedColumns: string[] = ['cliente', 'producto', 'descripcion', 'fechaSolicitud', 'estado', 'acciones'];
 
    
   ngAfterViewInit(): void{
