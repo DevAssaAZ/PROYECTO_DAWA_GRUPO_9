@@ -50,10 +50,10 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
     this.getDevoluciones();
     //inicializar las variables asociadas a los componentes del formulario
     this.form = this.fb.group({
-      cliente: ['', [Validators.required, Validators.minLength(3),, Validators.pattern(/^[a-zA-Z0-9]+$/)]],
-      producto: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9]+$/)]],
+      cliente: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9\s]+$/)]],
+      producto: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9\s]+$/)]],
       cantidad:['', [Validators.required]],
-      descripcion: ['', [Validators.required, Validators.minLength(3),, Validators.pattern(/^[a-zA-Z0-9]+$/)]],
+      descripcion: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9\s]+$/)]],
       estado: ['', [Validators.required]],
       fechaSolicitud: ['', [Validators.required]],
       prioridad:[false],
