@@ -135,7 +135,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="['id','cliente_id','producto', 'fecha_solicitud','descripcion','estado','actions']"></tr>
-    <tr mat-row *matRowDef="let row; columns:['numeroFactura','cliente_id','producto', 'fechaCompra','descripcion','estado','actions'];"></tr>
+    <tr mat-row *matRowDef="let row; columns:['id','cliente_id','producto', 'fecha_solicitud', 'descripcion', 'estado', 'actions'];"></tr>
 </table>
 <mat-paginator [pageSizeOptions]="[5,7,20]" aria-label="select page" showFirstLastButtons>
 </mat-paginator>
