@@ -54,12 +54,9 @@ export class CrudSolicitudSoporteComponent {
     });
   }
 
-  constructor(
-    private soporteService: SoportejsonService,
-    private fb: FormBuilder,
-    private mydialog: MatDialog,
-    private noti: MatDialog
-  ) {}
+  constructor(private soporteService: SoportejsonService,private fb: FormBuilder,private mydialog: MatDialog,private noti: MatDialog) {
+    
+  }
 
   // Obtener todos los soportes
   getSoportes(): void {
