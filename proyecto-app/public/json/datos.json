@@ -68,7 +68,7 @@
       "estado": "activo"
     },
     {
-      "id": 1,
+      "id": "1",
       "nombre": "Rafaela",
       "email": "correo",
       "telefono": 987654123,
@@ -77,7 +77,7 @@
       "estado": "activo"
     },
     {
-      "id": 1,
+      "id": "1",
       "nombre": "Alberto",
       "email": "alberto@gmail.com",
       "telefono": 365478914,

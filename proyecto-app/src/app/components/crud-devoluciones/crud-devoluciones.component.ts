@@ -15,6 +15,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
+import { NotificationComponent } from '../../shared/notification/notification.component';
 
 
 
@@ -60,7 +61,7 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
   }
   
   constructor( private devolucionesService:DevolucionesjsonService, private fb: FormBuilder,
-    private mydialog: MatDialog,  
+    private mydialog: MatDialog,   private noti: MatDialog
 
   ){}
     
@@ -152,13 +153,20 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
       },
     }); //abrir la ventana de dialogo
     dialogRef.afterClosed().subscribe(result=>{
-      if(result==="aceptar"){ // que quiero que suceda si dio click en aceptar
+      if(result==="Aceptar"){ // que quiero que suceda si dio click en aceptar
         this.devolucionesService.deleteMovie(devolucion).subscribe(()=>{
-          alert("Eliminado exitosamente");
+          const notiRef = this.noti.open(NotificationComponent,{
+            data:{
+              titulo:"CONFIRMACION",
+              contenido: "Se elimino Satisfactoriamente"
+            }
+          });
+          notiRef.afterClosed().subscribe(result=>{
+          });          
           this.getDevoluciones(); //para que se actualice el dataSource
         });      
-      }else if(result==="cancelar"){  // que quiero que suceda si dio click en cancelar
-        console.error("Cancelar");
+      }else if(result==="Cancelar"){  // que quiero que suceda si dio click en cancelar
+        this.getDevoluciones();
       }
     });
 
