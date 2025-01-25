@@ -16,6 +16,7 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatFormField, MatFormFieldModule, MatLabel } from '@angular/material/form-field';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { NotificationComponent } from '../../shared/notification/notification.component';
+import { DevolucionesApiService } from '../../services/devoluciones-api.service';
 
 
 
@@ -60,7 +61,7 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
     });
   }
   
-  constructor( private devolucionesService:DevolucionesjsonService, private fb: FormBuilder,
+  constructor( private devolucionesService:DevolucionesApiService, private fb: FormBuilder,
     private mydialog: MatDialog,   private noti: MatDialog
 
   ){}
