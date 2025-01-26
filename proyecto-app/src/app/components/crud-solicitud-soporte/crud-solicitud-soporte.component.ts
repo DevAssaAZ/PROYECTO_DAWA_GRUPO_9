@@ -16,6 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { NotificationComponent } from '../../shared/notification/notification.component';
+import { SoporteApiService } from '../../services/soporte-api.service';
 
 @Component({
   selector: 'app-crud-solicitud-soporte',
@@ -53,7 +54,7 @@ export class CrudSolicitudSoporteComponent {
     });
   }
 
-  constructor(private soporteService: SoportejsonService,private fb: FormBuilder,private mydialog: MatDialog,private noti: MatDialog) {
+  constructor(private soporteService: SoporteApiService,private fb: FormBuilder,private mydialog: MatDialog,private noti: MatDialog) {
 
   }
 
