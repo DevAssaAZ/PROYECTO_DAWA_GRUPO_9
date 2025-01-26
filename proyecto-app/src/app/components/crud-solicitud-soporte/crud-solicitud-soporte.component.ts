@@ -100,8 +100,13 @@ export class CrudSolicitudSoporteComponent {
               contenido: "Soporte eliminado exitosamente."
             }
           });
+          notiRef.afterClosed().subscribe(result=>{
+          });
           this.getSoportes();
         });
+      }
+      else if(result==="Cancelar"){
+        this.getSoportes();
       }
     });
   }
@@ -109,7 +114,7 @@ export class CrudSolicitudSoporteComponent {
   // Editar soporte
   editar(soporte: Soporte): void {
     this.isEditMode = true;
-    this.currentId = soporte.id??1;
+    this.currentId = soporte.id;
 
     this.form.setValue({
       id: soporte.id,
