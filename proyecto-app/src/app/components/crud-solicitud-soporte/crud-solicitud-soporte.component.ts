@@ -30,7 +30,7 @@ import { SoporteApiService } from '../../services/soporte-api.service';
 export class CrudSolicitudSoporteComponent {
   form!: FormGroup;
   isEditMode: boolean = false;
-  currentId!: string;
+  currentId!: number;
   title: string = "CRUD de Soporte";
 
   // DataSource para la tabla
@@ -103,7 +103,7 @@ export class CrudSolicitudSoporteComponent {
   // Editar soporte
   editar(soporte: Soporte): void {
     this.isEditMode = true;
-    this.currentId = soporte.id??"1";
+    this.currentId = soporte.id??1;
 
     this.form.setValue({
       id: soporte.id,
@@ -198,7 +198,7 @@ export class CrudSolicitudSoporteComponent {
       estado: 'Pendiente',
     });
     this.isEditMode = false;
-    this.currentId = '';
+    this.currentId = 0;
   }
 }
 
