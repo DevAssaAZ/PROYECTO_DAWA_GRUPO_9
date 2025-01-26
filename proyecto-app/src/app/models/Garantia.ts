@@ -3,7 +3,7 @@ import { Clientes } from "./Clientes";
 export interface Garantia{
     
     //propiedades
-    id?:number; 
+    id:number; 
     cliente_id: number;
     producto:string;
     numeroFactura:string;

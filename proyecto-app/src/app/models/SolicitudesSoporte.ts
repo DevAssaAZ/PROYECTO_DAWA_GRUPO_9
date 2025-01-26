@@ -1,3 +1,5 @@
+import { Clientes } from "./Clientes";
+
 export interface Soporte{
     id:number;
     cliente_id:string;
@@ -6,4 +8,5 @@ export interface Soporte{
     producto:string;
     fecha_solicitud:string;
     estado:string;
+    cliente?:Clientes;
 }
