@@ -20,8 +20,7 @@ export class SoporteApiService {
       return this.http.get<Soporte[]>(this.apiUrl).pipe(
         map((soportes) =>
           soportes.filter((soporte) =>
-            (cliente_id ? soporte.cliente_id.toLowerCase().includes(cliente_id.toLowerCase()) : true) &&
-            (estado ? soporte.estado.toLowerCase().includes(estado.toLowerCase()) : true)
+            (cliente_id ? soporte.cliente_id.toLowerCase().includes(cliente_id.toLowerCase()) : true)
           )
         )
       );
