@@ -16,6 +16,7 @@ import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { Producto } from '../../models/Producto';
 import { ProductosjsonService } from '../../services/productosjson.service';
 import { NotificationComponent } from '../../shared/notification/notification.component';
+import { ProductosApiService } from '../../services/productos-api.service';
 
 @Component({
   selector: 'app-crud-productos',
@@ -29,7 +30,7 @@ import { NotificationComponent } from '../../shared/notification/notification.co
 export class CrudProductosComponent implements OnInit, AfterViewInit{
   form! :FormGroup;
   isEditMode:boolean = false;
-  currentId! :number;
+  currentId! :string;
 
   //DataSource(fuente de datos) para mi tabla
   dataSource = new MatTableDataSource<Producto>();
@@ -55,7 +56,7 @@ export class CrudProductosComponent implements OnInit, AfterViewInit{
   }
 
   
-  constructor(private productoService:ProductosjsonService, private fb: FormBuilder, private dialog: MatDialog, private noti: MatDialog){
+  constructor(private productoService:ProductosApiService, private fb: FormBuilder, private dialog: MatDialog, private noti: MatDialog){
   }
 
   getProductos(): void{
@@ -211,7 +212,7 @@ export class CrudProductosComponent implements OnInit, AfterViewInit{
       fechaAgregado: '',
       imagen: '',
     });
-    this.currentId = 0;
+    this.currentId = '';
     this.isEditMode = false;
   }
 }
