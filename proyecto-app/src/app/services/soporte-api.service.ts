@@ -7,7 +7,7 @@ import { Soporte } from '../models/SolicitudesSoporte';
   providedIn: 'root'
 })
 export class SoporteApiService {
-  private apiUrl="http://localhost:5248/api/Soporte";
+  private apiUrl="http://localhost:5248/api/Soportes";
   constructor(private http:HttpClient) {
 
    }
