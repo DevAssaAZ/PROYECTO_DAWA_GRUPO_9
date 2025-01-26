@@ -57,7 +57,7 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
       descripcion: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100),Validators.pattern(/^[a-zA-Z0-9\s]+$/)]],
       estado: ['', [Validators.required]],
       fechaSolicitud: ['', [Validators.required]],
-      prioridad:[false, [Validators.required]],
+      prioridad:[false],
     });
   }
   
@@ -97,16 +97,11 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
       console.log("invalido");
       return;
     }
-    // Obtener los datos de los controles del formulario
+
     const newDevolucion: Devolucion = this.form.value;
-  // Validar si la fechaSolicitud está presente y es válida antes de convertirla
-  const fecha = new Date(newDevolucion.fechaSolicitud);
-  newDevolucion.fechaSolicitud = fecha.toISOString().split('T')[0]; // Solo la fecha, sin la hora
+    const fecha = new Date(newDevolucion.fechaSolicitud);
+    newDevolucion.fechaSolicitud = fecha.toISOString().split('T')[0];
   
-  delete newDevolucion.id; 
-
-  console.log("Datos de la devolución a enviar: ", newDevolucion); // Imprime los datos para depuración
-
     if (this.isEditMode) {
       newDevolucion.id = this.currentId;
       const dialogRef = this.mydialog.open(DialogComponent, {
