@@ -7,7 +7,7 @@ import { Soporte } from '../models/SolicitudesSoporte';
   providedIn: 'root'
 })
 export class SoporteApiService {
-  private apiUrl="http://localhost:5248/api/Devoluciones";
+  private apiUrl="http://localhost:5248/api/Soportes";
   constructor(private http:HttpClient) {
 
    }
@@ -15,12 +15,12 @@ export class SoporteApiService {
   getSoportes():Observable<Soporte[]>{ //obtener la lista de peliculas desde el archivo
       return this.http.get<Soporte[]>(this.apiUrl);
     }
-  // BUSCAR REGISTROS (por cliente_id, estado, o ambos)
-    getSoporteSearch(cliente_id?: string, estado?: string): Observable<Soporte[]> {
+  // BUSCAR REGISTROS (por cliente_id)
+    getSoporteSearch(cliente_id?: number): Observable<Soporte[]> {
       return this.http.get<Soporte[]>(this.apiUrl).pipe(
         map((soportes) =>
           soportes.filter((soporte) =>
-            (cliente_id ? soporte.cliente_id.toLowerCase().includes(cliente_id.toLowerCase()) : true)
+            (cliente_id ? Number(soporte.cliente_id) === cliente_id : true)
           )
         )
       );

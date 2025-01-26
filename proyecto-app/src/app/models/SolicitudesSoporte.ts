@@ -1,5 +1,5 @@
 export interface Soporte{
-    id?:string;
+    id?:number;
     cliente_id:string;
     titulo:string;
     descripcion:string;

@@ -30,7 +30,7 @@ import { SoporteApiService } from '../../services/soporte-api.service';
 export class CrudSolicitudSoporteComponent {
   form!: FormGroup;
   isEditMode: boolean = false;
-  currentId!: string;
+  currentId!: number;
   title: string = "CRUD de Soporte";
 
   // DataSource para la tabla
@@ -45,8 +45,8 @@ export class CrudSolicitudSoporteComponent {
     this.getSoportes();
     // Inicializar el formulario
     this.form = this.fb.group({
-      id: ["", [Validators.required,Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
-      cliente_id: ["", [Validators.required,Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
+      id: ['', [Validators.required,Validators.pattern(/^\d+$/)]],
+      cliente_id: ['', [Validators.required,Validators.pattern(/^\d+$/)]],
       descripcion: ["", [Validators.required, Validators.minLength(5),Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
       producto: ["", [Validators.required,Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
       fecha_solicitud: ["", [Validators.required]],
@@ -67,13 +67,19 @@ export class CrudSolicitudSoporteComponent {
 
   // Buscar soporte
   search(searchInput: HTMLInputElement): void {
-    if (searchInput.value) {
-      this.soporteService.getSoporteSearch(searchInput.value).subscribe((datos: Soporte[]) => {
+    const searchValue = searchInput.value.trim();
+  if (searchValue) {
+    const searchId = Number(searchValue);
+    if (!isNaN(searchId)) {
+      this.soporteService.getSoporteSearch(searchId).subscribe((datos: Soporte[]) => {
         this.dataSource.data = datos;
       });
     } else {
-      this.getSoportes();
+      console.error('El valor ingresado no es un número válido.');
     }
+  } else {
+    this.getSoportes();
+  }
   }
 
   // Eliminar soporte
@@ -103,7 +109,7 @@ export class CrudSolicitudSoporteComponent {
   // Editar soporte
   editar(soporte: Soporte): void {
     this.isEditMode = true;
-    this.currentId = soporte.id??"1";
+    this.currentId = soporte.id??1;
 
     this.form.setValue({
       id: soporte.id,
@@ -198,7 +204,7 @@ export class CrudSolicitudSoporteComponent {
       estado: 'Pendiente',
     });
     this.isEditMode = false;
-    this.currentId = '';
+    this.currentId = 0;
   }
 }
 
