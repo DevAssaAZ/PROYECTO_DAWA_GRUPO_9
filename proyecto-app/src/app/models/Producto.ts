@@ -1,7 +1,7 @@
 export interface Producto{
     
     //propiedades
-    id:number; 
+    id?:number; 
     nombre:string;
     categoria:string;
     isAvailable:boolean;

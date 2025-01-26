@@ -29,7 +29,8 @@ export class DevolucionesApiService {
   
 
   addDevolucion(devolucion: Devolucion): Observable<Devolucion> {
-    return this.http.post<Devolucion>(this.apiUrl, devolucion);
+    const { id, ...devolucionSinId } = devolucion;  
+    return this.http.post<Devolucion>(this.apiUrl, devolucionSinId);
   }
 
   updateDevolucion(devolucion: Devolucion): Observable<Devolucion> {

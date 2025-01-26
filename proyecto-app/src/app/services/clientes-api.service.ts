@@ -24,7 +24,8 @@ export class ClientesApiService {
     );
   }
   addCliente(cliente: Clientes):Observable<Clientes> {
-    return this.http.post<Clientes>(this.apiwebUrl, cliente);
+    const { id, ...clienteSinId } = cliente;  
+    return this.http.post<Clientes>(this.apiwebUrl, clienteSinId);
   }
 
   updateCliente(cliente: Clientes):Observable<Clientes> {

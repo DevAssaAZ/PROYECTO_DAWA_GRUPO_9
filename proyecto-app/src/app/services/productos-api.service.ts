@@ -31,8 +31,9 @@ export class ProductosApiService {
     }
   
     //CREAR
-    addProductos(producto:Producto):Observable<Producto>{
-      return this.http.post<Producto>(this.apiwebUrl, producto);
+    addProductos(producto: Producto): Observable<Producto> {
+      const { id, ...productoSinId } = producto;  // Crea una copia sin el campo `id`
+      return this.http.post<Producto>(this.apiwebUrl, productoSinId);
     }
   
     //MODIFICAR

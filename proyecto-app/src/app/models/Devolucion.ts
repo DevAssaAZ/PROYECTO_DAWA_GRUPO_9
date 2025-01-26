@@ -1,5 +1,5 @@
 export interface Devolucion {
-  id: number; // Opcional para nuevas solicitudes
+  id?: number; // Opcional para nuevas solicitudes
   cliente: string; 
   producto: string; 
   cantidad: number; 

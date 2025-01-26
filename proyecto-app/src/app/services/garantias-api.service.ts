@@ -32,7 +32,8 @@ export class GarantiasApiService {
 
   //CREAR
   addGarantia(garantia:Garantia):Observable<Garantia>{
-    return this.http.post<Garantia>(this.apiwebUrl, garantia);
+    const { id, ...garantiaSinId } = garantia;  
+    return this.http.post<Garantia>(this.apiwebUrl, garantiaSinId);
   }
 
   //MODIFICAR

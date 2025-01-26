@@ -37,7 +37,7 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
   ngOnInit(): void {
     this.getClientes();
     this.form = this.fb.group({
-      id: [" ",[Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
+      id: [" "],
       nombre: ["", [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
       email: ["",[Validators.required]],
       telefono:["", [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],

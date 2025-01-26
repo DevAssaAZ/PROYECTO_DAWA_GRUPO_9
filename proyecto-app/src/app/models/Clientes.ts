@@ -2,7 +2,7 @@ import { Garantia } from "./Garantia";
 import { Soporte } from "./SolicitudesSoporte";
 
 export interface Clientes{
-  id : number;                
+  id? : number;                
   nombre: string;            
   email: string;              
   telefono: string;           

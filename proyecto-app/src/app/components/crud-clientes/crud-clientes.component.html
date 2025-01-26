@@ -4,7 +4,7 @@
     <mat-form-field class="formElement">
         <mat-label> Id: </mat-label>
         <input matInput type="number" placeholder="0" formControlName="id"/>
-        <mat-error>
+        <!-- <mat-error>
             @if(form.get('id')?.invalid && (form.get("id")?.dirty || form.get('id')?.touched)){
                 @if(form.get('id')?.errors?.['required']){
                     El id del cliente es requerido
@@ -15,7 +15,7 @@
                     Solo numeros
                 }
             }
-        </mat-error>
+        </mat-error> -->
     </mat-form-field>
 
     <mat-form-field class="formElement">
