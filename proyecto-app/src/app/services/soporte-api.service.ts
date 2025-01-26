@@ -36,7 +36,7 @@ export class SoporteApiService {
         return this.http.put<Soporte>(urlDelSoporte, soporte);
       }
     
-    deleteMovie(soporte : Soporte):Observable<void>{
+    deleteSoporte(soporte : Soporte):Observable<void>{
         const urlDelSoporte = `${this.apiUrl}/${soporte.id}`;
         return this.http.delete<void>(urlDelSoporte);
       }
