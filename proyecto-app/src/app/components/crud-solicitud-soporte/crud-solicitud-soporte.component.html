@@ -21,7 +21,7 @@
         <mat-error>
             <ng-container *ngIf="form.get('cliente_id')?.invalid && (form.get('cliente_id')?.dirty || form.get('cliente_id')?.touched)">
                 <ng-container *ngIf="form.get('cliente_id')?.errors?.['required']">ID del Cliente es requerido</ng-container>
-                <ng-container *ngIf="form.get('id')?.errors?.['pattern']">Solo se permiten números</ng-container>
+                <ng-container *ngIf="form.get('cliente_id')?.errors?.['pattern']">Solo se permiten números</ng-container>
             </ng-container>
         </mat-error>
     </mat-form-field>
