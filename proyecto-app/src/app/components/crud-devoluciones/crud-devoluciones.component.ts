@@ -128,6 +128,7 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
         }
       });
     } else {
+      
       // Agregación en caso de nuevos datos
       const dialogRef = this.mydialog.open(DialogComponent, {
         data: {
@@ -148,21 +149,7 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
               notiRef.afterClosed().subscribe();
               this.clearForm();
               this.getDevoluciones();
-            },
-            error: (error) => {
-              if (error.status === 409) {
-                console.error("Conflicto detectado:", error.message);
-                const notiRef = this.noti.open(NotificationComponent, {
-                  data: {
-                    titulo: "ERROR",
-                    contenido: "Conflicto: Datos duplicados o restricciones de datos.",
-                  },
-                });
-                notiRef.afterClosed().subscribe();
-              } else {
-                console.error("Error inesperado:", error);
-              }
-            },
+            }
           });
         } else if (result === "Cancelar") {
           this.getDevoluciones();
