@@ -67,13 +67,19 @@ export class CrudSolicitudSoporteComponent {
 
   // Buscar soporte
   search(searchInput: HTMLInputElement): void {
-    if (searchInput.value) {
-      this.soporteService.getSoporteSearch(searchInput.value).subscribe((datos: Soporte[]) => {
+    const searchValue = searchInput.value.trim();
+  if (searchValue) {
+    const searchId = Number(searchValue);
+    if (!isNaN(searchId)) {
+      this.soporteService.getSoporteSearch(searchId).subscribe((datos: Soporte[]) => {
         this.dataSource.data = datos;
       });
     } else {
-      this.getSoportes();
+      console.error('El valor ingresado no es un número válido.');
     }
+  } else {
+    this.getSoportes();
+  }
   }
 
   // Eliminar soporte

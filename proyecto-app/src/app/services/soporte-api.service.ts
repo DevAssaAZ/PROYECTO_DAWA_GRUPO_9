@@ -16,11 +16,11 @@ export class SoporteApiService {
       return this.http.get<Soporte[]>(this.apiUrl);
     }
   // BUSCAR REGISTROS (por cliente_id)
-    getSoporteSearch(cliente_id?: string): Observable<Soporte[]> {
+    getSoporteSearch(cliente_id?: number): Observable<Soporte[]> {
       return this.http.get<Soporte[]>(this.apiUrl).pipe(
         map((soportes) =>
           soportes.filter((soporte) =>
-            (cliente_id ? soporte.cliente_id === cliente_id : true)
+            (cliente_id ? Number(soporte.cliente_id) === cliente_id : true)
           )
         )
       );
