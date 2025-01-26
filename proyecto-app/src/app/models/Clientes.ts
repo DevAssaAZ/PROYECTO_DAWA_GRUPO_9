@@ -1,3 +1,6 @@
+import { Garantia } from "./Garantia";
+import { Soporte } from "./SolicitudesSoporte";
+
 export interface Clientes{
   id ?: number;                
   nombre: string;            
@@ -5,5 +8,7 @@ export interface Clientes{
   telefono: string;           
   direccion: string;          
   fechaRegistro: string;     
-  estado: string;     
+  estado: string; 
+  garantia?:Garantia;
+  soporte?: Soporte;    
 }
