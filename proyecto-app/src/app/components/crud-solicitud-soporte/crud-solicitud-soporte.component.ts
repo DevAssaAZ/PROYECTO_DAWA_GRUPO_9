@@ -46,7 +46,7 @@ export class CrudSolicitudSoporteComponent {
     // Inicializar el formulario
     this.form = this.fb.group({
       id: ['', [Validators.required,Validators.pattern(/^\d+$/)]],
-      cliente_id: ["", [Validators.required,Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
+      cliente_id: ['', [Validators.required,Validators.pattern(/^\d+$/)]],
       descripcion: ["", [Validators.required, Validators.minLength(5),Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
       producto: ["", [Validators.required,Validators.pattern(/^[a-zA-Z0-9 ]+$/)]],
       fecha_solicitud: ["", [Validators.required]],
