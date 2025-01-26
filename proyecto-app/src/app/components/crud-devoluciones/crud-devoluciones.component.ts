@@ -51,13 +51,13 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
     this.getDevoluciones();
     //inicializar las variables asociadas a los componentes del formulario
     this.form = this.fb.group({
-      cliente: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9\s]+$/)]],
-      producto: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9\s]+$/)]],
-      cantidad:['', [Validators.required]],
-      descripcion: ['', [Validators.required, Validators.minLength(3), Validators.pattern(/^[a-zA-Z0-9\s]+$/)]],
+      cliente: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25),Validators.pattern(/^[a-zA-Z0-9\s]+$/)]],
+      producto: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(25),Validators.pattern(/^[a-zA-Z0-9\s]+$/)]],
+      cantidad:['', [Validators.required,Validators.min(1), Validators.max(100)]],
+      descripcion: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100),Validators.pattern(/^[a-zA-Z0-9\s]+$/)]],
       estado: ['', [Validators.required]],
       fechaSolicitud: ['', [Validators.required]],
-      prioridad:[false],
+      prioridad:[false, [Validators.required]],
     });
   }
   
@@ -92,71 +92,87 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
 
   }
   
-  onSubmit(){
-    if(this.form.invalid){
+  onSubmit() {
+    if (this.form.invalid) {
       console.log("invalido");
       return;
     }
-    //obtener los datos de los controles del formulario
-    const newDevolucion:Devolucion = this.form.value;
+    // Obtener los datos de los controles del formulario
+    const newDevolucion: Devolucion = this.form.value;
+  // Validar si la fechaSolicitud está presente y es válida antes de convertirla
+  const fecha = new Date(newDevolucion.fechaSolicitud);
+  newDevolucion.fechaSolicitud = fecha.toISOString().split('T')[0]; // Solo la fecha, sin la hora
+  
+  delete newDevolucion.id; 
 
-    if(this.isEditMode){
+  console.log("Datos de la devolución a enviar: ", newDevolucion); // Imprime los datos para depuración
+
+    if (this.isEditMode) {
       newDevolucion.id = this.currentId;
-      if(this.isEditMode){
-        newDevolucion.id = this.currentId;
-        const dialogRef = this.mydialog.open(DialogComponent,{
-          data:{
-            titulo:"Editar ",
-            contenido: 'Desea guardar la modificacion de esta solicitud de devolucion?'
-          }
-        }); //Abrir la ventana
-        dialogRef.afterClosed().subscribe(result=>{
-          if(result==="Aceptar"){
-            this.devolucionesService.updateDevolucion(newDevolucion).subscribe((updateDevolucion)=>{
-              // alert("Garantia editada exitosamente");
-              const notiRef = this.noti.open(NotificationComponent,{
-                data:{
-                  titulo:"CONFIRMACION",
-                  contenido: "Se edito Exitosamente"
-                }
-              });
-              notiRef.afterClosed().subscribe(result=>{
-              });
-              this.clearForm();
-              this.getDevoluciones();
+      const dialogRef = this.mydialog.open(DialogComponent, {
+        data: {
+          titulo: "Editar ",
+          contenido: 'Desea guardar la modificacion de esta solicitud de devolucion?',
+        },
+      }); // Abrir la ventana
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result === "Aceptar") {
+          this.devolucionesService.updateDevolucion(newDevolucion).subscribe((updateDevolucion) => {
+            const notiRef = this.noti.open(NotificationComponent, {
+              data: {
+                titulo: "CONFIRMACION",
+                contenido: "Se edito Exitosamente",
+              },
             });
-          } else if (result==="Cancelar"){
-            this.getDevoluciones();
-          }
-        })
-      } 
-    }else{  //agregacion en caso de nuevos datos
-
-      const dialogRef = this.mydialog.open(DialogComponent,{
-        data:{
-          titulo:"Agregar Nueva Solicitud de Devolucion" ,
-          contenido: 'Desea guardar esta nueva Devolucion?'
-        }
-      }); //Abrir la ventana
-      dialogRef.afterClosed().subscribe(result=>{
-        if(result==="Aceptar"){
-          this.devolucionesService.addDevolucion(newDevolucion).subscribe((addDevolucion)=>{
-            // alert("Garantia agregada exitosamente");
-            const notiRef = this.noti.open(NotificationComponent,{
-              data:{
-                titulo:"CONFIRMACION",
-                contenido: "Se agrego Exitosamente"
-              }
-            });
-            notiRef.afterClosed().subscribe(result=>{
-            });
+            notiRef.afterClosed().subscribe();
             this.clearForm();
-            this.getDevoluciones(); 
+            this.getDevoluciones();
           });
-        }else if(result==="Cancelar"){
+        } else if (result === "Cancelar") {
           this.getDevoluciones();
         }
-      })
+      });
+    } else {
+      // Agregación en caso de nuevos datos
+      const dialogRef = this.mydialog.open(DialogComponent, {
+        data: {
+          titulo: "Agregar Nueva Solicitud de Devolucion",
+          contenido: 'Desea guardar esta nueva Devolucion?',
+        },
+      }); // Abrir la ventana
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result === "Aceptar") {
+          this.devolucionesService.addDevolucion(newDevolucion).subscribe({
+            next: (addDevolucion) => {
+              const notiRef = this.noti.open(NotificationComponent, {
+                data: {
+                  titulo: "CONFIRMACION",
+                  contenido: "Se agrego Exitosamente",
+                },
+              });
+              notiRef.afterClosed().subscribe();
+              this.clearForm();
+              this.getDevoluciones();
+            },
+            error: (error) => {
+              if (error.status === 409) {
+                console.error("Conflicto detectado:", error.message);
+                const notiRef = this.noti.open(NotificationComponent, {
+                  data: {
+                    titulo: "ERROR",
+                    contenido: "Conflicto: Datos duplicados o restricciones de datos.",
+                  },
+                });
+                notiRef.afterClosed().subscribe();
+              } else {
+                console.error("Error inesperado:", error);
+              }
+            },
+          });
+        } else if (result === "Cancelar") {
+          this.getDevoluciones();
+        }
+      });
     }
   }
 
@@ -212,6 +228,13 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
     });
 
   }
+// Método para convertir la fecha al formato 'yyyy-MM-dd'
+formatDate(date: Date): string {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+  return `${year}-${month}-${day}`;  // Aquí se usan los backticks para interpolar variables
+}
 
 
 }

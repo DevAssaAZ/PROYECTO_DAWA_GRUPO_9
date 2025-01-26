@@ -17,15 +17,17 @@ export class DevolucionesjsonService {
   }
 
 
-  getDevolucionSearch(cliente?:string):Observable<Devolucion[]>{
+  getDevolucionSearch(cliente?: string): Observable<Devolucion[]> {
     return this.http.get<Devolucion[]>(this.jsonUrl).pipe(
-        map((devoluciones)=>
-        devoluciones.filter((devolucion)=>
-        (cliente ? devolucion.cliente.toLowerCase().includes(cliente.toLowerCase()):true)
+      map((devoluciones) =>
+        devoluciones.filter((devolucion) =>
+          // Verifica que devolucion.cliente no sea undefined o null antes de llamar toLowerCase
+          (cliente ? devolucion.cliente && devolucion.cliente.toLowerCase().includes(cliente.toLowerCase()) : true)
         )
       )
     );
   }
+  
 
   addDevolucion(devolucion: Devolucion): Observable<Devolucion> {
     return this.http.post<Devolucion>(this.jsonUrl, devolucion);

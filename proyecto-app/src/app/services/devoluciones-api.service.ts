@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
 import { Devolucion } from '../models/Devolucion';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +17,16 @@ export class DevolucionesApiService {
   }
 
 
-  getDevolucionSearch(cliente?:string):Observable<Devolucion[]>{
+  getDevolucionSearch(cliente?: string): Observable<Devolucion[]> {
     return this.http.get<Devolucion[]>(this.apiUrl).pipe(
-        map((devoluciones)=>
-        devoluciones.filter((devolucion)=>
-        (cliente ? devolucion.cliente.toLowerCase().includes(cliente.toLowerCase()):true)
+      map((devoluciones) =>
+        devoluciones.filter((devolucion) =>
+          (cliente ? devolucion.cliente && devolucion.cliente.toLowerCase().includes(cliente.toLowerCase()) : true)
         )
       )
     );
   }
+  
 
   addDevolucion(devolucion: Devolucion): Observable<Devolucion> {
     return this.http.post<Devolucion>(this.apiUrl, devolucion);
