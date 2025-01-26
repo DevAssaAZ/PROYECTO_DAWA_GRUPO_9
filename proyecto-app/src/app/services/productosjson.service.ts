@@ -8,7 +8,7 @@ import { map, Observable } from 'rxjs';
 })
 export class ProductosjsonService {
 
-  private jsonUrl="http://localhost:3000/productos";
+  private jsonUrl="http://localhost:5248/api/Productoes";
   constructor(private http:HttpClient) { //Inyeccion de httpClient
 
 

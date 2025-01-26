@@ -16,6 +16,7 @@ import { MatNativeDateModule, MatOptionModule } from '@angular/material/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { NotificationComponent } from '../../shared/notification/notification.component';
+import { ClientesApiService } from '../../services/clientes-api.service';
 
 
 
@@ -48,7 +49,7 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
   ngAfterViewInit(): void {
     this.dataSource.paginator= this.paginator;
   }
-  constructor(private clienteService:ClientesjsonService, private fb: FormBuilder, private mydialog: MatDialog, private noti: MatDialog){
+  constructor(private clienteService: ClientesApiService/*ClientesjsonService*/, private fb: FormBuilder, private mydialog: MatDialog, private noti: MatDialog){
   }
   getClientes():void{
     this.clienteService.getClientes().subscribe((datos:Clientes[])=>{

@@ -16,6 +16,7 @@ import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { Producto } from '../../models/Producto';
 import { ProductosjsonService } from '../../services/productosjson.service';
 import { NotificationComponent } from '../../shared/notification/notification.component';
+import { ProductosApiService } from '../../services/productos-api.service';
 
 @Component({
   selector: 'app-crud-productos',
@@ -55,7 +56,7 @@ export class CrudProductosComponent implements OnInit, AfterViewInit{
   }
 
   
-  constructor(private productoService:ProductosjsonService, private fb: FormBuilder, private dialog: MatDialog, private noti: MatDialog){
+  constructor(private productoService: ProductosApiService, private fb: FormBuilder, private dialog: MatDialog, private noti: MatDialog){
   }
 
   getProductos(): void{

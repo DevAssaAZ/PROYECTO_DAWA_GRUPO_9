@@ -1,3 +1,5 @@
+import { Clientes } from "./Clientes";
+
 export interface Garantia{
     
     //propiedades
@@ -10,5 +12,5 @@ export interface Garantia{
     estado:string;
     fechaRegistro:string;
     ultimaActualizacion:string;
-  
+    cliente?: Clientes|null;
 }
