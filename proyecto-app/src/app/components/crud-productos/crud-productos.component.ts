@@ -30,7 +30,7 @@ import { ProductosApiService } from '../../services/productos-api.service';
 export class CrudProductosComponent implements OnInit, AfterViewInit{
   form! :FormGroup;
   isEditMode:boolean = false;
-  currentId! :string;
+  currentId! :number;
 
   //DataSource(fuente de datos) para mi tabla
   dataSource = new MatTableDataSource<Producto>();
@@ -56,7 +56,7 @@ export class CrudProductosComponent implements OnInit, AfterViewInit{
   }
 
   
-  constructor(private productoService:ProductosApiService, private fb: FormBuilder, private dialog: MatDialog, private noti: MatDialog){
+  constructor(private productoService:ProductosjsonService, private fb: FormBuilder, private dialog: MatDialog, private noti: MatDialog){
   }
 
   getProductos(): void{
@@ -212,7 +212,7 @@ export class CrudProductosComponent implements OnInit, AfterViewInit{
       fechaAgregado: '',
       imagen: '',
     });
-    this.currentId = '';
+    this.currentId = 0;
     this.isEditMode = false;
   }
 }

@@ -8,6 +8,7 @@ import { ProductosjsonService } from '../../services/productosjson.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { FooterComponent } from "../../shared/footer/footer.component";
+import { ProductosApiService } from '../../services/productos-api.service';
 
 @Component({
   selector: 'app-lista-productos',
@@ -19,7 +20,7 @@ import { FooterComponent } from "../../shared/footer/footer.component";
 export class ListaProductosComponent {
   title = 'Productos';
   producto:Producto[]=[];
-  constructor(private miServicio:ProductosjsonService, private mydialog: MatDialog){
+  constructor(private miServicio: ProductosApiService, private mydialog: MatDialog){
     
   }
 
