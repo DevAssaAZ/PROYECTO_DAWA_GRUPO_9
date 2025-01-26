@@ -56,7 +56,7 @@ export class CrudProductosComponent implements OnInit, AfterViewInit{
   }
 
   
-  constructor(private productoService:ProductosjsonService, private fb: FormBuilder, private dialog: MatDialog, private noti: MatDialog){
+  constructor(private productoService: ProductosApiService, private fb: FormBuilder, private dialog: MatDialog, private noti: MatDialog){
   }
 
   getProductos(): void{

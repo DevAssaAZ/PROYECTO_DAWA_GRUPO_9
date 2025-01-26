@@ -16,6 +16,7 @@ import { Garantia } from '../../models/Garantia';
 import { GarantiasjsonService } from '../../services/garantiasjson.service';
 import { DialogComponent } from '../../shared/dialog/dialog.component';
 import { NotificationComponent } from '../../shared/notification/notification.component';
+import { GarantiasApiService } from '../../services/garantias-api.service';
 
 @Component({
   selector: 'app-crud-garantias',
@@ -56,7 +57,7 @@ export class CrudGarantiasComponent implements OnInit, AfterViewInit{
   }
 
   
-  constructor(private garantiaService:GarantiasjsonService, private fb: FormBuilder, private mydialog: MatDialog, private noti: MatDialog){
+  constructor(private garantiaService: GarantiasApiService, private fb: FormBuilder, private mydialog: MatDialog, private noti: MatDialog){
   }
 
   getGarantias(): void{
