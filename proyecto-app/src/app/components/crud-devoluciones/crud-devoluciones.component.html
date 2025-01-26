@@ -6,49 +6,56 @@
     <mat-form-field class="formElement">
         <mat-label>Cliente: </mat-label>
         <input matInput type="text" placeholder="Cliente" formControlName="cliente"/>
-        <mat-error *ngIf="form.get('cliente')?.invalid && (form.get('cliente')?.dirty || form.get('cliente')?.touched)">
-          <ng-container *ngIf="form.get('cliente')?.errors?.['required']">
-            Cliente es requerido.
-          </ng-container>
-          <ng-container *ngIf="form.get('cliente')?.errors?.['minlength']">
-            Cliente debe tener al menos 3 caracteres.
-          </ng-container>
-        </mat-error>
+        <mat-error>
+          @if(form.get('cliente')?.invalid && (form.get('cliente')?.dirty || form.get('cliente')?.touched)) {
+              @if(form.get('cliente')?.errors?.['required']) {
+                  Cliente es requerido.
+              }
+              @if(form.get('cliente')?.errors?.['minlength']) {
+                  Cliente debe tener al menos 3 caracteres.
+              }
+          }
+      </mat-error>
     </mat-form-field>
     <mat-form-field class="formElement">
       <mat-label>Producto: </mat-label>
       <input matInput type="text" placeholder="Producto" formControlName="producto"/>
-      <mat-error *ngIf="form.get('producto')?.invalid && (form.get('producto')?.dirty || form.get('producto')?.touched)">
-        <ng-container *ngIf="form.get('producto')?.errors?.['required']">
-          Producto es requerido.
-        </ng-container>
-        <ng-container *ngIf="form.get('producto')?.errors?.['minlength']">
-          Producto debe tener al menos 3 caracteres.
-        </ng-container>
-        <ng-container *ngIf="form.get('producto')?.errors?.['pattern']">
-          Producto solo puede contener letras y números.
-        </ng-container>
-      </mat-error>
+      <mat-error>
+        @if(form.get('producto')?.invalid && (form.get('producto')?.dirty || form.get('producto')?.touched)) {
+            @if(form.get('producto')?.errors?.['required']) {
+                Producto es requerido.
+            }
+            @if(form.get('producto')?.errors?.['minlength']) {
+                Producto debe tener al menos 3 caracteres.
+            }
+            @if(form.get('producto')?.errors?.['pattern']) {
+                Producto solo puede contener letras y números.
+            }
+        }
+    </mat-error>
   </mat-form-field>   
   <mat-radio-group aria-label="Select an option" class="formElement" formControlName="cantidad"> Cantidad:
     <mat-radio-button [value]="1">1</mat-radio-button>
     <mat-radio-button [value]="2">2</mat-radio-button>
-    <mat-radio-button [value]="3">3 o más</mat-radio-button>    
+    <mat-radio-button [value]="3">3 o más</mat-radio-button>
+    <mat-error>
+      @if(form.get('cantidad')?.invalid && (form.get('cantidad')?.dirty || form.get('cantidad')?.touched)) {
+          @if(form.get('cantidad')?.errors?.['required']) {
+              La cantidad es obligatoria.
+          }
+      }
+  </mat-error>    
   </mat-radio-group> 
   <mat-form-field class="formElement">
         <mat-label>Descripcion: </mat-label>
         <textarea matInput type="text" placeholder="Descripcion" formControlName="descripcion"></textarea>
-        <mat-error *ngIf="form.get('descripcion')?.invalid && (form.get('descripcion')?.dirty || form.get('descripcion')?.touched)">
-          <ng-container *ngIf="form.get('descripcion')?.errors?.['required']">
-            La descripción es obligatoria.
-          </ng-container>
-          <ng-container *ngIf="form.get('descripcion')?.errors?.['minlength']">
-            La descripción debe tener al menos 3 caracteres.
-          </ng-container>
-          <ng-container *ngIf="form.get('descripcion')?.errors?.['maxlength']">
-            La descripción no puede superar los 100 caracteres.
-          </ng-container>
-        </mat-error>
+        <mat-error>
+          @if(form.get('descripcion')?.invalid && (form.get('descripcion')?.dirty || form.get('descripcion')?.touched)) {
+              @if(form.get('descripcion')?.errors?.['required']) {
+                  La descripción es obligatoria.
+              }
+          }
+      </mat-error>
     </mat-form-field>
     <mat-form-field class="formElement">
       <mat-label>Estado: </mat-label>
@@ -58,22 +65,32 @@
           <mat-option value="En Revision">En Revision</mat-option>
           <mat-option value="Devolucion Resuelto">Devolucion Resuelto</mat-option>
       </mat-select>
-      <mat-error *ngIf="form.get('estado')?.invalid && (form.get('estado')?.dirty || form.get('estado')?.touched)">
-        <ng-container *ngIf="form.get('estado')?.errors?.['required']">
-          El estado es obligatorio.
-        </ng-container>
-      </mat-error>
+      <mat-error>
+        @if(form.get('estado')?.invalid && (form.get('estado')?.dirty || form.get('estado')?.touched)) {
+            @if(form.get('estado')?.errors?.['required']) {
+                El estado es obligatorio.
+            }
+        }
+    </mat-error>
   </mat-form-field>    
   <mat-form-field class="formElement">
       <mat-label>Fecha: </mat-label>
       <input matInput [matDatepicker]="picker" type="text" placeholder="FechaSolicitud" formControlName="fechaSolicitud" [min]="fechaMinima" [max]="fechaMaxima"/>
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="form.get('fechaSolicitud')?.invalid && (form.get('fechaSolicitud')?.dirty || form.get('fechaSolicitud')?.touched)">
-        <ng-container *ngIf="form.get('fechaSolicitud')?.errors?.['required']">
-          La fecha es obligatoria.
-        </ng-container>
-      </mat-error>
+      <mat-error>
+        @if(form.get('fechaSolicitud')?.invalid && (form.get('fechaSolicitud')?.dirty || form.get('fechaSolicitud')?.touched)) {
+            @if(form.get('fechaSolicitud')?.errors?.['required']) {
+                La fecha es obligatoria.
+            }
+            @if(form.get('fechaSolicitud')?.errors?.['matDatepickerMin']) {
+                La fecha debe ser posterior a {{ fechaMinima | date:'shortDate' }}.
+            }
+            @if(form.get('fechaSolicitud')?.errors?.['matDatepickerMax']) {
+                La fecha debe ser anterior a {{ fechaMaxima | date:'shortDate' }}.
+            }
+        }
+    </mat-error>
     </mat-form-field>
     
     
