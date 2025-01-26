@@ -15,7 +15,7 @@ export class SoporteApiService {
   getSoportes():Observable<Soporte[]>{ //obtener la lista de peliculas desde el archivo
       return this.http.get<Soporte[]>(this.apiUrl);
     }
-  // BUSCAR REGISTROS (por cliente_id, estado, o ambos)
+  // BUSCAR REGISTROS (por cliente_id)
     getSoporteSearch(cliente_id?: string, estado?: string): Observable<Soporte[]> {
       return this.http.get<Soporte[]>(this.apiUrl).pipe(
         map((soportes) =>
