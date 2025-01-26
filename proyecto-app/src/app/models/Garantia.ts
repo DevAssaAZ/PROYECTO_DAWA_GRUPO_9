@@ -10,4 +10,5 @@ export interface Garantia{
     estado:string;
     fechaRegistro:string;
     ultimaActualizacion:string;
+    cliente: string|null;
 }
