@@ -10,6 +10,7 @@
             <ng-container *ngIf="form.get('id')?.invalid && (form.get('id')?.dirty || form.get('id')?.touched)">
                 <ng-container *ngIf="form.get('id')?.errors?.['required']">Numero de caso es requerido</ng-container>
                 <ng-container *ngIf="form.get('id')?.errors?.['minlength']">Numero de caso mínimo 5 caracteres</ng-container>
+                <ng-container *ngIf="form.get('id')?.errors?.['pattern']">Solo se permiten números</ng-container>
             </ng-container>
         </mat-error>
     </mat-form-field>
