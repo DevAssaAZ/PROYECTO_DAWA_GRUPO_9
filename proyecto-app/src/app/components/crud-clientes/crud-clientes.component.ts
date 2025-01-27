@@ -32,6 +32,7 @@ export class CrudClientesComponent implements OnInit, AfterViewInit{
   form!:FormGroup;
   isEditMode: boolean = false;
   currentId!:number;
+  title:string = "CRUD CLIENTES";
   dataSource = new MatTableDataSource<Clientes>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   ngOnInit(): void {

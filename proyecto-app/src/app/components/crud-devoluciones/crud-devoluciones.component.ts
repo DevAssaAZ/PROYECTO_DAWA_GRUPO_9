@@ -32,7 +32,7 @@ export class CrudDevolucionesComponent implements OnInit, AfterViewInit{
   form!: FormGroup;
   isEditMode:boolean = false;
   currentId!: number;
-  title:string = "CRUD de Devoluciones";
+  title:string = "CRUD DEVOLUCIONES";
 
 
   //dataSource (fuente de datos) para mi tabla

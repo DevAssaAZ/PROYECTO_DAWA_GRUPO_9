@@ -31,7 +31,7 @@ export class CrudSolicitudSoporteComponent {
   form!: FormGroup;
   isEditMode: boolean = false;
   currentId!: number;
-  title: string = "CRUD de Soporte";
+  title: string = "CRUD SOPORTE";
 
   // DataSource para la tabla
   dataSource = new MatTableDataSource<Soporte>();

@@ -31,7 +31,7 @@ export class CrudGarantiasComponent implements OnInit, AfterViewInit{
   form! :FormGroup;
   isEditMode:boolean = false;
   currentId! :number;
-  title:string = "CRUD de Garantias";
+  title:string = "CRUD GARANTIAS";
 
   //DataSource(fuente de datos) para mi tabla
   dataSource = new MatTableDataSource<Garantia>();

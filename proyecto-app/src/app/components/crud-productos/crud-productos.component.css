@@ -29,3 +29,8 @@ form{
     display:inline-block;
     padding: 3px;
 }
+.titulo{
+    margin-left: 8px;
+    text-align: center;
+    padding-top: 40px;
+}

@@ -18,7 +18,7 @@ import { ProductosApiService } from '../../services/productos-api.service';
   styleUrl: './lista-productos.component.css'
 })
 export class ListaProductosComponent {
-  title = 'Productos';
+  title = 'PRODUCTOS';
   producto:Producto[]=[];
   constructor(private miServicio: ProductosApiService, private mydialog: MatDialog){
     
